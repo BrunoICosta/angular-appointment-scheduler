@@ -1,0 +1,9 @@
+{
+  "app": {
+    "name": "Agendaí",
+    "tagline": "Agenda para clínicas e salões"
+  },
+  "common": {
+    "loading": "Carregando…"
+  }
+}
