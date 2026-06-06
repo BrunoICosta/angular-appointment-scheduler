@@ -5,5 +5,16 @@
   },
   "common": {
     "loading": "Loading…"
+  },
+  "nav": {
+    "dashboard": "Home"
+  },
+  "shell": {
+    "skipToContent": "Skip to content",
+    "mainNavigation": "Main navigation"
+  },
+  "dashboard": {
+    "title": "Overview",
+    "subtitle": "Keep track of the upcoming appointments in your schedule."
   }
 }

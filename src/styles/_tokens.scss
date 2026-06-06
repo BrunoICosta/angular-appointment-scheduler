@@ -1,0 +1,84 @@
+// Design tokens exposed as CSS custom properties so themes can be swapped at runtime.
+
+@mixin light-theme {
+  color-scheme: light;
+  --bg: #f5f6fb;
+  --surface: #ffffff;
+  --surface-2: #f0f2f8;
+  --surface-3: #e7eaf3;
+  --border: #dfe3ee;
+  --border-strong: #c7cddd;
+  --text: #151a2d;
+  --text-muted: #586078;
+  --text-subtle: #7a8197;
+
+  --primary: #4f46e5;
+  --primary-strong: #4338ca;
+  --primary-soft: #eceeff;
+  --on-primary: #ffffff;
+
+  --success: #15803d;
+  --success-soft: #e7f6ec;
+  --warning: #b45309;
+  --warning-soft: #fdf3e2;
+  --danger: #c62828;
+  --danger-soft: #fdecec;
+
+  --shadow-sm: 0 1px 2px rgb(21 26 45 / 6%), 0 1px 3px rgb(21 26 45 / 8%);
+  --shadow: 0 4px 12px rgb(21 26 45 / 8%), 0 2px 4px rgb(21 26 45 / 5%);
+  --shadow-lg: 0 24px 48px -12px rgb(21 26 45 / 25%);
+  --backdrop: rgb(15 18 35 / 45%);
+}
+
+@mixin dark-theme {
+  color-scheme: dark;
+  --bg: #0d1020;
+  --surface: #151a2e;
+  --surface-2: #1b2139;
+  --surface-3: #242b47;
+  --border: #283052;
+  --border-strong: #3a4369;
+  --text: #e9ebf5;
+  --text-muted: #a3aac2;
+  --text-subtle: #848ba6;
+
+  --primary: #8f8bff;
+  --primary-strong: #aba8ff;
+  --primary-soft: rgb(143 139 255 / 14%);
+  --on-primary: #0d1020;
+
+  --success: #4ade80;
+  --success-soft: rgb(74 222 128 / 12%);
+  --warning: #fbbf24;
+  --warning-soft: rgb(251 191 36 / 12%);
+  --danger: #f87171;
+  --danger-soft: rgb(248 113 113 / 12%);
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 30%);
+  --shadow: 0 4px 14px rgb(0 0 0 / 35%);
+  --shadow-lg: 0 24px 48px -12px rgb(0 0 0 / 60%);
+  --backdrop: rgb(3 5 12 / 65%);
+}
+
+:root {
+  --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 18px;
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--primary) 40%, transparent);
+  --sidebar-width: 248px;
+  --bottom-nav-height: 64px;
+  --transition: 160ms cubic-bezier(0.2, 0, 0, 1);
+
+  @include light-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    @include dark-theme;
+  }
+}
+
+:root[data-theme='dark'] {
+  @include dark-theme;
+}

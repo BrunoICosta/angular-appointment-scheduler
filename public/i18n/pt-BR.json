@@ -5,5 +5,16 @@
   },
   "common": {
     "loading": "Carregando…"
+  },
+  "nav": {
+    "dashboard": "Início"
+  },
+  "shell": {
+    "skipToContent": "Pular para o conteúdo",
+    "mainNavigation": "Navegação principal"
+  },
+  "dashboard": {
+    "title": "Visão geral",
+    "subtitle": "Acompanhe os próximos atendimentos da sua agenda."
   }
 }

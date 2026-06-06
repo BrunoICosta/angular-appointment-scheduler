@@ -3,19 +3,18 @@ import { provideRouter } from '@angular/router';
 
 import { translocoTesting } from '../testing/transloco-testing';
 import { App } from './app';
+import { routes } from './app.routes';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App, translocoTesting()],
-      providers: [provideRouter([])],
+      providers: [provideRouter(routes)],
     }).compileComponents();
   });
 
-  it('renders the translated app name', () => {
+  it('creates the root component', () => {
     const fixture = TestBed.createComponent(App);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Agendaí');
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });

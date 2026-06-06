@@ -1,0 +1,44 @@
+<a class="skip-link" href="#main-content">{{ 'shell.skipToContent' | transloco }}</a>
+
+<div class="shell">
+  <nav class="nav" [attr.aria-label]="'shell.mainNavigation' | transloco">
+    <a class="brand nav__brand" routerLink="/">
+      <span class="brand__logo" aria-hidden="true">A</span>
+      <span class="brand__text">
+        <strong>{{ 'app.name' | transloco }}</strong>
+        <small>{{ 'app.tagline' | transloco }}</small>
+      </span>
+    </a>
+
+    <ul class="nav__list">
+      @for (item of navItems; track item.path) {
+        <li>
+          <a
+            class="nav__link"
+            [routerLink]="item.path"
+            routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+            ariaCurrentWhenActive="page"
+          >
+            <app-icon [name]="item.icon" />
+            <span>{{ item.label | transloco }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="shell__content">
+    <header class="topbar">
+      <a class="brand topbar__brand" routerLink="/">
+        <span class="brand__logo" aria-hidden="true">A</span>
+        <strong>{{ 'app.name' | transloco }}</strong>
+      </a>
+      <div class="topbar__actions"></div>
+    </header>
+
+    <main id="main-content" class="shell__main" tabindex="-1">
+      <router-outlet />
+    </main>
+  </div>
+</div>
