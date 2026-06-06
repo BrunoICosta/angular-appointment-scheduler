@@ -2,8 +2,8 @@ import { Injectable, computed, inject } from '@angular/core';
 
 import { buildSeedAppointments } from '../data/seed';
 import { Appointment } from '../models';
-import { CLOCK } from '../utils/clock';
-import { EntityStore } from './entity-store';
+import { CLOCK } from '../utils/clock.token';
+import { EntityStore } from './entity.store';
 
 @Injectable({ providedIn: 'root' })
 export class AppointmentsStore extends EntityStore<Appointment> {

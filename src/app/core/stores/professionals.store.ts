@@ -2,7 +2,7 @@ import { Injectable, computed } from '@angular/core';
 
 import { SEED_PROFESSIONALS } from '../data/seed';
 import { Professional } from '../models';
-import { EntityStore } from './entity-store';
+import { EntityStore } from './entity.store';
 
 @Injectable({ providedIn: 'root' })
 export class ProfessionalsStore extends EntityStore<Professional> {

@@ -2,7 +2,7 @@ import { Injectable, computed } from '@angular/core';
 
 import { SEED_CLIENTS } from '../data/seed';
 import { Client } from '../models';
-import { EntityStore } from './entity-store';
+import { EntityStore } from './entity.store';
 
 @Injectable({ providedIn: 'root' })
 export class ClientsStore extends EntityStore<Client> {

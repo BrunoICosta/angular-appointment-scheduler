@@ -2,19 +2,19 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
 import { translocoTesting } from '../testing/transloco-testing';
-import { App } from './app';
+import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 
-describe('App', () => {
+describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App, translocoTesting()],
+      imports: [AppComponent, translocoTesting()],
       providers: [provideRouter(routes)],
     }).compileComponents();
   });
 
   it('creates the root component', () => {
-    const fixture = TestBed.createComponent(App);
+    const fixture = TestBed.createComponent(AppComponent);
     expect(fixture.componentInstance).toBeTruthy();
   });
 });

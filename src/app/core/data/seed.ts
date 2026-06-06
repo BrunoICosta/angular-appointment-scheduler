@@ -1,5 +1,5 @@
 import { Appointment, Client, DaySchedule, Professional, Service, WorkingHours } from '../models';
-import { addDays, addMinutes, startOfDay, timeToMinutes } from '../utils/date-time';
+import { addDays, addMinutes, startOfDay, timeToMinutes } from '../../shared/utils/date-time.utils';
 
 /**
  * Demo data loaded on the first visit. Appointments are generated relative to "now"

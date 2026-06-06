@@ -2,7 +2,7 @@ import { Signal, computed, inject, signal } from '@angular/core';
 
 import { Entity, NewEntity } from '../models';
 import { StorageService } from '../storage/storage.service';
-import { createId } from '../utils/id';
+import { createId } from '../../shared/utils/id.utils';
 
 /**
  * Signal-based in-memory collection persisted to `localStorage`.
