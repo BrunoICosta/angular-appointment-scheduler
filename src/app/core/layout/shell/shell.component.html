@@ -34,7 +34,10 @@
         <span class="brand__logo" aria-hidden="true">A</span>
         <strong>{{ 'app.name' | transloco }}</strong>
       </a>
-      <div class="topbar__actions"></div>
+      <div class="topbar__actions">
+        <app-language-switcher />
+        <app-theme-toggle />
+      </div>
     </header>
 
     <main id="main-content" class="shell__main" tabindex="-1">

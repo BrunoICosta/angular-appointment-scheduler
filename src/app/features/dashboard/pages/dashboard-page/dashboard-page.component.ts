@@ -1,19 +1,24 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { TranslocoPipe } from '@jsverse/transloco';
+
+import { CLOCK } from '../../../../core/utils/clock.token';
+import { LocaleDatePipe } from '../../../../shared/pipes/locale-date.pipe';
 
 @Component({
   selector: 'app-dashboard-page',
-  imports: [TranslocoPipe],
+  imports: [TranslocoPipe, LocaleDatePipe],
   template: `
     <section class="page">
       <header class="page-header">
         <div>
           <h1>{{ 'dashboard.title' | transloco }}</h1>
-          <p>{{ 'dashboard.subtitle' | transloco }}</p>
+          <p>{{ today | localeDate: 'fullDate' }}</p>
         </div>
       </header>
     </section>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardPageComponent {}
+export class DashboardPageComponent {
+  protected readonly today = inject(CLOCK)();
+}

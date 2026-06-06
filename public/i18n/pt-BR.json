@@ -11,7 +11,9 @@
   },
   "shell": {
     "skipToContent": "Pular para o conteúdo",
-    "mainNavigation": "Navegação principal"
+    "mainNavigation": "Navegação principal",
+    "language": "Idioma",
+    "darkMode": "Modo escuro"
   },
   "dashboard": {
     "title": "Visão geral",
