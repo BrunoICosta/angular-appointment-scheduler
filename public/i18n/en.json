@@ -4,7 +4,19 @@
     "tagline": "Scheduling for clinics and salons"
   },
   "common": {
-    "loading": "Loading…"
+    "loading": "Loading…",
+    "close": "Close",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "add": "Add",
+    "search": "Search",
+    "actions": "Actions",
+    "optional": "optional",
+    "saved": "Changes saved.",
+    "deleted": "Record deleted."
   },
   "nav": {
     "dashboard": "Home"
@@ -18,5 +30,13 @@
   "dashboard": {
     "title": "Overview",
     "subtitle": "Keep track of the upcoming appointments in your schedule."
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email address.",
+    "minlength": "Use at least {{requiredLength}} characters.",
+    "maxlength": "Use at most {{requiredLength}} characters.",
+    "min": "The minimum value is {{min}}.",
+    "max": "The maximum value is {{max}}."
   }
 }

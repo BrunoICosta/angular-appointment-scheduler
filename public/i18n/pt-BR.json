@@ -4,7 +4,19 @@
     "tagline": "Agenda para clínicas e salões"
   },
   "common": {
-    "loading": "Carregando…"
+    "loading": "Carregando…",
+    "close": "Fechar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Salvar",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "add": "Adicionar",
+    "search": "Buscar",
+    "actions": "Ações",
+    "optional": "opcional",
+    "saved": "Alterações salvas.",
+    "deleted": "Registro excluído."
   },
   "nav": {
     "dashboard": "Início"
@@ -18,5 +30,13 @@
   "dashboard": {
     "title": "Visão geral",
     "subtitle": "Acompanhe os próximos atendimentos da sua agenda."
+  },
+  "validation": {
+    "required": "Campo obrigatório.",
+    "email": "Informe um e-mail válido.",
+    "minlength": "Use pelo menos {{requiredLength}} caracteres.",
+    "maxlength": "Use no máximo {{requiredLength}} caracteres.",
+    "min": "O valor mínimo é {{min}}.",
+    "max": "O valor máximo é {{max}}."
   }
 }
