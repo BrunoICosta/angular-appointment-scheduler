@@ -37,6 +37,9 @@
     "minlength": "Use at least {{requiredLength}} characters.",
     "maxlength": "Use at most {{requiredLength}} characters.",
     "min": "The minimum value is {{min}}.",
-    "max": "The maximum value is {{max}}."
+    "max": "The maximum value is {{max}}.",
+    "cpf": "Invalid CPF.",
+    "cpfTaken": "A client with this CPF already exists.",
+    "phone": "Invalid phone. Use area code + number, e.g. (11) 98765-4321."
   }
 }

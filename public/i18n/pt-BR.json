@@ -37,6 +37,9 @@
     "minlength": "Use pelo menos {{requiredLength}} caracteres.",
     "maxlength": "Use no máximo {{requiredLength}} caracteres.",
     "min": "O valor mínimo é {{min}}.",
-    "max": "O valor máximo é {{max}}."
+    "max": "O valor máximo é {{max}}.",
+    "cpf": "CPF inválido.",
+    "cpfTaken": "Já existe um cliente com este CPF.",
+    "phone": "Telefone inválido. Use DDD + número, ex.: (11) 98765-4321."
   }
 }
