@@ -1,0 +1,127 @@
+<section class="page">
+  <header class="page-header">
+    <div>
+      <h1>{{ 'clients.title' | transloco }}</h1>
+      <p>{{ 'clients.subtitle' | transloco: { count: total() } }}</p>
+    </div>
+    <div class="page-header__actions">
+      <button type="button" class="btn btn--primary" (click)="editing.set(null)">
+        <app-icon name="plus" />
+        {{ 'clients.new' | transloco }}
+      </button>
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="toolbar">
+      <label class="input-icon toolbar__search">
+        <span class="sr-only">{{ 'clients.searchLabel' | transloco }}</span>
+        <app-icon name="search" />
+        <input
+          class="input"
+          type="search"
+          [value]="query()"
+          [placeholder]="'clients.searchPlaceholder' | transloco"
+          (input)="onSearch($event)"
+        />
+      </label>
+    </div>
+
+    @if (filtered().length > 0) {
+      <table class="data-table">
+        <caption class="sr-only">
+          {{
+            'clients.title' | transloco
+          }}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{{ 'clients.fields.name' | transloco }}</th>
+            <th scope="col">{{ 'clients.fields.phone' | transloco }}</th>
+            <th scope="col">{{ 'clients.fields.email' | transloco }}</th>
+            <th scope="col">{{ 'clients.fields.cpf' | transloco }}</th>
+            <th scope="col" class="data-table__numeric">
+              {{ 'clients.appointments' | transloco }}
+            </th>
+            <th scope="col">
+              <span class="sr-only">{{ 'common.actions' | transloco }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (client of filtered(); track client.id) {
+            <tr>
+              <td class="data-table__primary">
+                <div class="identity">
+                  <span class="avatar" aria-hidden="true">{{ initials(client.name) }}</span>
+                  <div>
+                    <strong>{{ client.name }}</strong>
+                    @if (client.notes) {
+                      <small>{{ client.notes }}</small>
+                    }
+                  </div>
+                </div>
+              </td>
+              <td class="data-table__nowrap" [attr.data-label]="'clients.fields.phone' | transloco">
+                <a class="link-muted" [href]="'tel:' + client.phone">{{ client.phone }}</a>
+              </td>
+              <td [attr.data-label]="'clients.fields.email' | transloco">
+                <a class="link-muted" [href]="'mailto:' + client.email">{{ client.email }}</a>
+              </td>
+              <td class="data-table__nowrap" [attr.data-label]="'clients.fields.cpf' | transloco">
+                {{ client.cpf }}
+              </td>
+              <td
+                class="data-table__numeric"
+                [attr.data-label]="'clients.appointments' | transloco"
+              >
+                {{ appointmentCount(client) }}
+              </td>
+              <td class="data-table__actions">
+                <button
+                  type="button"
+                  class="btn btn--ghost btn--icon btn--sm"
+                  [attr.aria-label]="('common.edit' | transloco) + ' ' + client.name"
+                  (click)="editing.set(client)"
+                >
+                  <app-icon name="pencil" />
+                </button>
+                <button
+                  type="button"
+                  class="btn btn--danger-ghost btn--icon btn--sm"
+                  [attr.aria-label]="('common.delete' | transloco) + ' ' + client.name"
+                  (click)="remove(client)"
+                >
+                  <app-icon name="trash" />
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <div class="empty-state">
+        <app-icon name="users" />
+        @if (query()) {
+          <strong>{{ 'clients.noResults' | transloco }}</strong>
+          <p>{{ 'clients.noResultsHint' | transloco }}</p>
+        } @else {
+          <strong>{{ 'clients.empty' | transloco }}</strong>
+          <p>{{ 'clients.emptyHint' | transloco }}</p>
+          <button type="button" class="btn btn--primary" (click)="editing.set(null)">
+            <app-icon name="plus" />
+            {{ 'clients.new' | transloco }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+@if (editing() !== undefined) {
+  <app-client-form-dialog
+    [client]="editing() ?? null"
+    (save)="save($event)"
+    (closed)="editing.set(undefined)"
+  />
+}

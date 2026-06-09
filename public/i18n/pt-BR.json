@@ -19,7 +19,8 @@
     "deleted": "Registro excluído."
   },
   "nav": {
-    "dashboard": "Início"
+    "dashboard": "Início",
+    "clients": "Clientes"
   },
   "shell": {
     "skipToContent": "Pular para o conteúdo",
@@ -41,5 +42,32 @@
     "cpf": "CPF inválido.",
     "cpfTaken": "Já existe um cliente com este CPF.",
     "phone": "Telefone inválido. Use DDD + número, ex.: (11) 98765-4321."
+  },
+  "clients": {
+    "title": "Clientes",
+    "subtitle": "{{count}} clientes cadastrados",
+    "new": "Novo cliente",
+    "newTitle": "Novo cliente",
+    "editTitle": "Editar cliente",
+    "searchLabel": "Buscar clientes",
+    "searchPlaceholder": "Buscar por nome, e-mail, telefone ou CPF",
+    "appointments": "Agendamentos",
+    "fields": {
+      "name": "Nome completo",
+      "phone": "Telefone",
+      "email": "E-mail",
+      "cpf": "CPF",
+      "notes": "Observações"
+    },
+    "empty": "Nenhum cliente cadastrado",
+    "emptyHint": "Cadastre seu primeiro cliente para começar a agendar.",
+    "noResults": "Nenhum cliente encontrado",
+    "noResultsHint": "Tente buscar por outro termo.",
+    "created": "Cliente {{name}} cadastrado.",
+    "updated": "Cliente {{name}} atualizado.",
+    "deleted": "Cliente {{name}} excluído.",
+    "deleteTitle": "Excluir cliente",
+    "deleteMessage": "Tem certeza que deseja excluir {{name}}?",
+    "deleteWithAppointments": "Tem certeza que deseja excluir {{name}}? Os {{count}} agendamentos deste cliente também serão removidos."
   }
 }

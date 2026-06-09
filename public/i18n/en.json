@@ -19,7 +19,8 @@
     "deleted": "Record deleted."
   },
   "nav": {
-    "dashboard": "Home"
+    "dashboard": "Home",
+    "clients": "Clients"
   },
   "shell": {
     "skipToContent": "Skip to content",
@@ -41,5 +42,32 @@
     "cpf": "Invalid CPF.",
     "cpfTaken": "A client with this CPF already exists.",
     "phone": "Invalid phone. Use area code + number, e.g. (11) 98765-4321."
+  },
+  "clients": {
+    "title": "Clients",
+    "subtitle": "{{count}} registered clients",
+    "new": "New client",
+    "newTitle": "New client",
+    "editTitle": "Edit client",
+    "searchLabel": "Search clients",
+    "searchPlaceholder": "Search by name, email, phone or CPF",
+    "appointments": "Appointments",
+    "fields": {
+      "name": "Full name",
+      "phone": "Phone",
+      "email": "Email",
+      "cpf": "CPF",
+      "notes": "Notes"
+    },
+    "empty": "No clients yet",
+    "emptyHint": "Add your first client to start booking.",
+    "noResults": "No clients found",
+    "noResultsHint": "Try a different search term.",
+    "created": "Client {{name}} added.",
+    "updated": "Client {{name}} updated.",
+    "deleted": "Client {{name}} deleted.",
+    "deleteTitle": "Delete client",
+    "deleteMessage": "Are you sure you want to delete {{name}}?",
+    "deleteWithAppointments": "Are you sure you want to delete {{name}}? Their {{count}} appointments will also be removed."
   }
 }

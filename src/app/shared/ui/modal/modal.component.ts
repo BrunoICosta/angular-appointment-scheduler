@@ -75,6 +75,10 @@ export class ModalComponent {
       } else {
         element.setAttribute('open', '');
       }
+      // Prefer the first form field over the close button as the initial focus target.
+      element
+        .querySelector<HTMLElement>('.modal__body :is(input, select, textarea):not([disabled])')
+        ?.focus();
     });
 
     // Give focus back to whatever opened the dialog.

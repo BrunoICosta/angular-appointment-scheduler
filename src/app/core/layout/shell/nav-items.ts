@@ -10,4 +10,5 @@ export interface NavItem {
 
 export const NAV_ITEMS: readonly NavItem[] = [
   { path: '/', label: 'nav.dashboard', icon: 'dashboard', exact: true },
+  { path: '/clients', label: 'nav.clients', icon: 'users' },
 ];

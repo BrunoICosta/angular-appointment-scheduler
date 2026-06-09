@@ -1,0 +1,86 @@
+<app-modal
+  [heading]="(client() ? 'clients.editTitle' : 'clients.newTitle') | transloco"
+  (closed)="closed.emit()"
+>
+  <form id="client-form" class="form-grid" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="field field--full">
+      <label class="field__label" for="client-name">{{ 'clients.fields.name' | transloco }}</label>
+      <input
+        id="client-name"
+        class="input"
+        formControlName="name"
+        autocomplete="name"
+        aria-describedby="client-name-error"
+      />
+      <app-field-error [control]="form.controls.name" id="client-name-error" />
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="client-phone">{{
+        'clients.fields.phone' | transloco
+      }}</label>
+      <input
+        id="client-phone"
+        class="input"
+        type="tel"
+        formControlName="phone"
+        appMask="phone"
+        placeholder="(11) 98765-4321"
+        aria-describedby="client-phone-error"
+      />
+      <app-field-error [control]="form.controls.phone" id="client-phone-error" />
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="client-cpf">{{ 'clients.fields.cpf' | transloco }}</label>
+      <input
+        id="client-cpf"
+        class="input"
+        formControlName="cpf"
+        appMask="cpf"
+        placeholder="000.000.000-00"
+        aria-describedby="client-cpf-error"
+      />
+      <app-field-error [control]="form.controls.cpf" id="client-cpf-error" />
+    </div>
+
+    <div class="field field--full">
+      <label class="field__label" for="client-email">{{
+        'clients.fields.email' | transloco
+      }}</label>
+      <input
+        id="client-email"
+        class="input"
+        type="email"
+        formControlName="email"
+        autocomplete="email"
+        aria-describedby="client-email-error"
+      />
+      <app-field-error [control]="form.controls.email" id="client-email-error" />
+    </div>
+
+    <div class="field field--full">
+      <label class="field__label" for="client-notes">
+        {{ 'clients.fields.notes' | transloco }}
+        <span class="field__hint">({{ 'common.optional' | transloco }})</span>
+      </label>
+      <textarea
+        id="client-notes"
+        class="textarea"
+        formControlName="notes"
+        rows="3"
+        aria-describedby="client-notes-error"
+      ></textarea>
+      <app-field-error [control]="form.controls.notes" id="client-notes-error" />
+    </div>
+  </form>
+
+  <ng-container modalFooter>
+    <button type="button" class="btn btn--secondary" (click)="closed.emit()">
+      {{ 'common.cancel' | transloco }}
+    </button>
+    <button type="submit" form="client-form" class="btn btn--primary">
+      {{ 'common.save' | transloco }}
+    </button>
+  </ng-container>
+</app-modal>

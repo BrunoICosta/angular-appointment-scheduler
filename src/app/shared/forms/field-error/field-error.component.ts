@@ -7,13 +7,14 @@ import { describeErrors, ValidationMessage } from './validation-message';
 /**
  * Renders the first validation error of a control once the user has interacted with it.
  * Subscribes to `control.events` so it stays correct inside OnPush parents.
+ * Give the host an `id` and reference it from the input's `aria-describedby`.
  */
 @Component({
   selector: 'app-field-error',
   imports: [TranslocoPipe],
   template: `
     @if (message(); as error) {
-      <p class="field__error" [id]="id()">{{ error.key | transloco: error.params }}</p>
+      <p class="field__error">{{ error.key | transloco: error.params }}</p>
     }
   `,
   host: { 'aria-live': 'polite' },
@@ -21,8 +22,6 @@ import { describeErrors, ValidationMessage } from './validation-message';
 })
 export class FieldErrorComponent {
   readonly control = input.required<AbstractControl>();
-  /** Id referenced by the input's `aria-describedby`. */
-  readonly id = input<string>();
 
   protected readonly message = signal<ValidationMessage | null>(null);
 
