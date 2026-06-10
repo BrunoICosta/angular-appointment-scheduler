@@ -1,0 +1,109 @@
+<app-modal
+  [wide]="true"
+  [heading]="(professional() ? 'professionals.editTitle' : 'professionals.newTitle') | transloco"
+  (closed)="closed.emit()"
+>
+  <form
+    id="professional-form"
+    class="form-grid"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    novalidate
+  >
+    <div class="field">
+      <label class="field__label" for="professional-name">
+        {{ 'professionals.fields.name' | transloco }}
+      </label>
+      <input
+        id="professional-name"
+        class="input"
+        formControlName="name"
+        autocomplete="name"
+        aria-describedby="professional-name-error"
+      />
+      <app-field-error [control]="form.controls.name" id="professional-name-error" />
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="professional-specialty">
+        {{ 'professionals.fields.specialty' | transloco }}
+      </label>
+      <input
+        id="professional-specialty"
+        class="input"
+        formControlName="specialty"
+        [placeholder]="'professionals.specialtyPlaceholder' | transloco"
+        aria-describedby="professional-specialty-error"
+      />
+      <app-field-error [control]="form.controls.specialty" id="professional-specialty-error" />
+    </div>
+
+    <fieldset class="field field--full fieldset">
+      <legend class="field__label">{{ 'professionals.fields.color' | transloco }}</legend>
+      <div class="swatches">
+        @for (color of colors; track color) {
+          <label class="swatch" [style.--swatch]="color">
+            <input type="radio" formControlName="color" [value]="color" />
+            <span class="sr-only">{{ color }}</span>
+          </label>
+        }
+        <label class="swatch swatch--custom">
+          <span class="sr-only">{{ 'professionals.customColor' | transloco }}</span>
+          <input type="color" formControlName="color" />
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset class="field field--full fieldset" formArrayName="workingHours">
+      <legend class="field__label">{{ 'professionals.fields.workingHours' | transloco }}</legend>
+      <ul class="schedule-editor">
+        @for (weekday of weekdayOrder; track weekday) {
+          <li class="schedule-editor__row" [formGroupName]="weekday">
+            <label class="checkbox schedule-editor__day">
+              <input type="checkbox" formControlName="enabled" />
+              <span>{{ weekdayDate(weekday) | localeDate: 'EEEE' }}</span>
+            </label>
+            @if (day(weekday).controls.enabled.value) {
+              <div class="schedule-editor__times">
+                <label class="sr-only" [for]="'start-' + weekday">
+                  {{ 'professionals.opensAt' | transloco }}
+                </label>
+                <input
+                  class="input"
+                  type="time"
+                  step="900"
+                  [id]="'start-' + weekday"
+                  formControlName="start"
+                />
+                <span aria-hidden="true">–</span>
+                <label class="sr-only" [for]="'end-' + weekday">
+                  {{ 'professionals.closesAt' | transloco }}
+                </label>
+                <input
+                  class="input"
+                  type="time"
+                  step="900"
+                  [id]="'end-' + weekday"
+                  formControlName="end"
+                />
+              </div>
+              <app-field-error class="schedule-editor__error" [control]="day(weekday)" />
+            } @else {
+              <span class="schedule-editor__off">{{ 'professionals.dayOff' | transloco }}</span>
+            }
+          </li>
+        }
+      </ul>
+      <app-field-error [control]="form.controls.workingHours" />
+    </fieldset>
+  </form>
+
+  <ng-container modalFooter>
+    <button type="button" class="btn btn--secondary" (click)="closed.emit()">
+      {{ 'common.cancel' | transloco }}
+    </button>
+    <button type="submit" form="professional-form" class="btn btn--primary">
+      {{ 'common.save' | transloco }}
+    </button>
+  </ng-container>
+</app-modal>

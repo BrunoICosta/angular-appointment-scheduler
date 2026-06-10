@@ -22,6 +22,13 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./features/clients/clients.routes').then((m) => m.CLIENTS_ROUTES),
       },
+      {
+        path: 'professionals',
+        loadChildren: () =>
+          import('./features/professionals/professionals.routes').then(
+            (m) => m.PROFESSIONALS_ROUTES,
+          ),
+      },
     ],
   },
   { path: '**', redirectTo: '' },

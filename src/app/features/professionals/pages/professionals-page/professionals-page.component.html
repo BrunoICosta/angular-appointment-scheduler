@@ -1,0 +1,98 @@
+<section class="page">
+  <header class="page-header">
+    <div>
+      <h1>{{ 'professionals.title' | transloco }}</h1>
+      <p>{{ 'professionals.subtitle' | transloco }}</p>
+    </div>
+    <div class="page-header__actions">
+      <button type="button" class="btn btn--primary" (click)="editing.set(null)">
+        <app-icon name="plus" />
+        {{ 'professionals.new' | transloco }}
+      </button>
+    </div>
+  </header>
+
+  @if (professionals().length > 0) {
+    <ul class="professional-grid">
+      @for (professional of professionals(); track professional.id) {
+        <li class="card professional" [style.--accent]="professional.color">
+          <div class="professional__header">
+            <div class="identity">
+              <span class="avatar professional__avatar" aria-hidden="true">
+                {{ initials(professional.name) }}
+              </span>
+              <div>
+                <h2 class="professional__name">{{ professional.name }}</h2>
+                <small>{{ professional.specialty }}</small>
+              </div>
+            </div>
+            <div class="professional__actions">
+              <button
+                type="button"
+                class="btn btn--ghost btn--icon btn--sm"
+                [attr.aria-label]="('common.edit' | transloco) + ' ' + professional.name"
+                (click)="editing.set(professional)"
+              >
+                <app-icon name="pencil" />
+              </button>
+              <button
+                type="button"
+                class="btn btn--danger-ghost btn--icon btn--sm"
+                [attr.aria-label]="('common.delete' | transloco) + ' ' + professional.name"
+                (click)="remove(professional)"
+              >
+                <app-icon name="trash" />
+              </button>
+            </div>
+          </div>
+
+          <dl class="week">
+            @for (weekday of weekdayOrder; track weekday) {
+              @let day = professional.workingHours[weekday];
+              <div class="week__day" [class.is-off]="!day">
+                <dt>{{ weekdayDate(weekday) | localeDate: 'EEE' }}</dt>
+                <dd>
+                  @if (day) {
+                    <span>{{ day.start }}</span>
+                    <span class="sr-only">{{ 'professionals.to' | transloco }}</span>
+                    <span>{{ day.end }}</span>
+                  } @else {
+                    {{ 'professionals.dayOff' | transloco }}
+                  }
+                </dd>
+              </div>
+            }
+          </dl>
+
+          <footer class="professional__footer">
+            <span>
+              <app-icon name="calendar" />
+              {{
+                'professionals.appointmentCount'
+                  | transloco: { count: appointmentCount(professional) }
+              }}
+            </span>
+          </footer>
+        </li>
+      }
+    </ul>
+  } @else {
+    <div class="card empty-state">
+      <app-icon name="briefcase" />
+      <strong>{{ 'professionals.empty' | transloco }}</strong>
+      <p>{{ 'professionals.emptyHint' | transloco }}</p>
+      <button type="button" class="btn btn--primary" (click)="editing.set(null)">
+        <app-icon name="plus" />
+        {{ 'professionals.new' | transloco }}
+      </button>
+    </div>
+  }
+</section>
+
+@if (editing() !== undefined) {
+  <app-professional-form-dialog
+    [professional]="editing() ?? null"
+    (save)="save($event)"
+    (closed)="editing.set(undefined)"
+  />
+}

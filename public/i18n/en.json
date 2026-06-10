@@ -20,7 +20,8 @@
   },
   "nav": {
     "dashboard": "Home",
-    "clients": "Clients"
+    "clients": "Clients",
+    "professionals": "Professionals"
   },
   "shell": {
     "skipToContent": "Skip to content",
@@ -41,7 +42,10 @@
     "max": "The maximum value is {{max}}.",
     "cpf": "Invalid CPF.",
     "cpfTaken": "A client with this CPF already exists.",
-    "phone": "Invalid phone. Use area code + number, e.g. (11) 98765-4321."
+    "phone": "Invalid phone. Use area code + number, e.g. (11) 98765-4321.",
+    "timeRequired": "Enter both start and end times.",
+    "timeRange": "Closing time must be after opening time.",
+    "noWorkingDays": "Select at least one working day."
   },
   "clients": {
     "title": "Clients",
@@ -67,6 +71,34 @@
     "updated": "Client {{name}} updated.",
     "deleted": "Client {{name}} deleted.",
     "deleteTitle": "Delete client",
+    "deleteMessage": "Are you sure you want to delete {{name}}?",
+    "deleteWithAppointments": "Are you sure you want to delete {{name}}? Their {{count}} appointments will also be removed."
+  },
+  "professionals": {
+    "title": "Professionals",
+    "subtitle": "Team, specialties and working hours.",
+    "new": "New professional",
+    "newTitle": "New professional",
+    "editTitle": "Edit professional",
+    "specialtyPlaceholder": "E.g. Hairdresser, Physiotherapist",
+    "customColor": "Custom color",
+    "opensAt": "Opening time",
+    "closesAt": "Closing time",
+    "to": "to",
+    "dayOff": "Off",
+    "appointmentCount": "{{count}} appointments",
+    "fields": {
+      "name": "Name",
+      "specialty": "Specialty",
+      "color": "Calendar color",
+      "workingHours": "Working hours"
+    },
+    "empty": "No professionals yet",
+    "emptyHint": "Add your team to open the schedule.",
+    "created": "Professional {{name}} added.",
+    "updated": "Professional {{name}} updated.",
+    "deleted": "Professional {{name}} deleted.",
+    "deleteTitle": "Delete professional",
     "deleteMessage": "Are you sure you want to delete {{name}}?",
     "deleteWithAppointments": "Are you sure you want to delete {{name}}? Their {{count}} appointments will also be removed."
   }
