@@ -21,7 +21,8 @@
   "nav": {
     "dashboard": "Home",
     "clients": "Clients",
-    "professionals": "Professionals"
+    "professionals": "Professionals",
+    "services": "Services"
   },
   "shell": {
     "skipToContent": "Skip to content",
@@ -101,5 +102,26 @@
     "deleteTitle": "Delete professional",
     "deleteMessage": "Are you sure you want to delete {{name}}?",
     "deleteWithAppointments": "Are you sure you want to delete {{name}}? Their {{count}} appointments will also be removed."
+  },
+  "services": {
+    "title": "Services",
+    "subtitle": "Service catalog with duration and price.",
+    "new": "New service",
+    "newTitle": "New service",
+    "editTitle": "Edit service",
+    "minutes": "{{minutes}} min",
+    "fields": {
+      "name": "Service",
+      "duration": "Duration",
+      "price": "Price"
+    },
+    "empty": "No services yet",
+    "emptyHint": "Add the services you offer to use them in appointments.",
+    "created": "Service {{name}} added.",
+    "updated": "Service {{name}} updated.",
+    "deleted": "Service {{name}} deleted.",
+    "deleteTitle": "Delete service",
+    "deleteMessage": "Are you sure you want to delete {{name}}?",
+    "inUse": "{{name}} has {{count}} appointments and cannot be deleted."
   }
 }

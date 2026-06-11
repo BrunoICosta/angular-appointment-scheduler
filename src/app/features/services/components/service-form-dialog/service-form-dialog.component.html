@@ -1,0 +1,62 @@
+<app-modal
+  [heading]="(service() ? 'services.editTitle' : 'services.newTitle') | transloco"
+  (closed)="closed.emit()"
+>
+  <form id="service-form" class="form-grid" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="field field--full">
+      <label class="field__label" for="service-name">{{
+        'services.fields.name' | transloco
+      }}</label>
+      <input
+        id="service-name"
+        class="input"
+        formControlName="name"
+        aria-describedby="service-name-error"
+      />
+      <app-field-error [control]="form.controls.name" id="service-name-error" />
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="service-duration">
+        {{ 'services.fields.duration' | transloco }}
+      </label>
+      <select
+        id="service-duration"
+        class="select"
+        formControlName="durationMinutes"
+        aria-describedby="service-duration-error"
+      >
+        @for (minutes of durations; track minutes) {
+          <option [ngValue]="minutes">{{ 'services.minutes' | transloco: { minutes } }}</option>
+        }
+      </select>
+      <app-field-error [control]="form.controls.durationMinutes" id="service-duration-error" />
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="service-price">{{
+        'services.fields.price' | transloco
+      }}</label>
+      <input
+        id="service-price"
+        class="input"
+        type="number"
+        inputmode="decimal"
+        min="0"
+        step="0.01"
+        formControlName="price"
+        aria-describedby="service-price-error"
+      />
+      <app-field-error [control]="form.controls.price" id="service-price-error" />
+    </div>
+  </form>
+
+  <ng-container modalFooter>
+    <button type="button" class="btn btn--secondary" (click)="closed.emit()">
+      {{ 'common.cancel' | transloco }}
+    </button>
+    <button type="submit" form="service-form" class="btn btn--primary">
+      {{ 'common.save' | transloco }}
+    </button>
+  </ng-container>
+</app-modal>

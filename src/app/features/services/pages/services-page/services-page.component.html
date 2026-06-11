@@ -1,0 +1,103 @@
+<section class="page">
+  <header class="page-header">
+    <div>
+      <h1>{{ 'services.title' | transloco }}</h1>
+      <p>{{ 'services.subtitle' | transloco }}</p>
+    </div>
+    <div class="page-header__actions">
+      <button type="button" class="btn btn--primary" (click)="editing.set(null)">
+        <app-icon name="plus" />
+        {{ 'services.new' | transloco }}
+      </button>
+    </div>
+  </header>
+
+  <div class="card">
+    @if (services().length > 0) {
+      <table class="data-table">
+        <caption class="sr-only">
+          {{
+            'services.title' | transloco
+          }}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">{{ 'services.fields.name' | transloco }}</th>
+            <th scope="col">{{ 'services.fields.duration' | transloco }}</th>
+            <th scope="col" class="data-table__numeric">
+              {{ 'services.fields.price' | transloco }}
+            </th>
+            <th scope="col" class="data-table__numeric">
+              {{ 'clients.appointments' | transloco }}
+            </th>
+            <th scope="col">
+              <span class="sr-only">{{ 'common.actions' | transloco }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (service of services(); track service.id) {
+            <tr>
+              <td class="data-table__primary">
+                <div class="identity">
+                  <span class="avatar" aria-hidden="true"><app-icon name="scissors" /></span>
+                  <strong>{{ service.name }}</strong>
+                </div>
+              </td>
+              <td [attr.data-label]="'services.fields.duration' | transloco">
+                <span class="badge">
+                  <app-icon name="clock" />
+                  {{ 'services.minutes' | transloco: { minutes: service.durationMinutes } }}
+                </span>
+              </td>
+              <td
+                class="data-table__numeric data-table__nowrap"
+                [attr.data-label]="'services.fields.price' | transloco"
+              >
+                {{ service.price | localeCurrency }}
+              </td>
+              <td
+                class="data-table__numeric"
+                [attr.data-label]="'clients.appointments' | transloco"
+              >
+                {{ appointmentCount(service) }}
+              </td>
+              <td class="data-table__actions">
+                <button
+                  type="button"
+                  class="btn btn--ghost btn--icon btn--sm"
+                  [attr.aria-label]="('common.edit' | transloco) + ' ' + service.name"
+                  (click)="editing.set(service)"
+                >
+                  <app-icon name="pencil" />
+                </button>
+                <button
+                  type="button"
+                  class="btn btn--danger-ghost btn--icon btn--sm"
+                  [attr.aria-label]="('common.delete' | transloco) + ' ' + service.name"
+                  (click)="remove(service)"
+                >
+                  <app-icon name="trash" />
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <div class="empty-state">
+        <app-icon name="scissors" />
+        <strong>{{ 'services.empty' | transloco }}</strong>
+        <p>{{ 'services.emptyHint' | transloco }}</p>
+      </div>
+    }
+  </div>
+</section>
+
+@if (editing() !== undefined) {
+  <app-service-form-dialog
+    [service]="editing() ?? null"
+    (save)="save($event)"
+    (closed)="editing.set(undefined)"
+  />
+}
