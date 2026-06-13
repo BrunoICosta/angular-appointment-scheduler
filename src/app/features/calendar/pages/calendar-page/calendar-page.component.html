@@ -2,9 +2,21 @@
   <header class="page-header">
     <div>
       <h1>{{ 'calendar.title' | transloco }}</h1>
-      <p>{{ 'calendar.subtitle' | transloco }}</p>
+      <p>
+        @if (selected(); as professional) {
+          {{ 'calendar.subtitleFor' | transloco: { name: professional.name } }}
+        } @else {
+          {{ 'calendar.subtitle' | transloco }}
+        }
+      </p>
     </div>
   </header>
+
+  <app-professional-filter
+    [professionals]="professionals()"
+    [selectedId]="selected()?.id ?? null"
+    (selectedChange)="selectProfessional($event)"
+  />
 
   <div class="card calendar-card">
     @defer (on immediate) {

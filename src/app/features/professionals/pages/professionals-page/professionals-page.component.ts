@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { NewEntity, Professional } from '../../../../core/models';
@@ -16,7 +17,13 @@ type EditorState = Professional | null | undefined;
 
 @Component({
   selector: 'app-professionals-page',
-  imports: [TranslocoPipe, IconComponent, LocaleDatePipe, ProfessionalFormDialogComponent],
+  imports: [
+    RouterLink,
+    TranslocoPipe,
+    IconComponent,
+    LocaleDatePipe,
+    ProfessionalFormDialogComponent,
+  ],
   templateUrl: './professionals-page.component.html',
   styleUrl: './professionals-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

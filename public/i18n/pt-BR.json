@@ -102,7 +102,8 @@
     "deleted": "Profissional {{name}} excluído.",
     "deleteTitle": "Excluir profissional",
     "deleteMessage": "Tem certeza que deseja excluir {{name}}?",
-    "deleteWithAppointments": "Tem certeza que deseja excluir {{name}}? Os {{count}} agendamentos deste profissional também serão removidos."
+    "deleteWithAppointments": "Tem certeza que deseja excluir {{name}}? Os {{count}} agendamentos deste profissional também serão removidos.",
+    "viewCalendar": "Ver agenda"
   },
   "services": {
     "title": "Serviços",
@@ -127,6 +128,9 @@
   },
   "calendar": {
     "title": "Agenda",
-    "subtitle": "Visualize os atendimentos por mês, semana ou dia."
+    "subtitle": "Visualize os atendimentos por mês, semana ou dia.",
+    "subtitleFor": "Agenda de {{name}}.",
+    "filterLabel": "Filtrar por profissional",
+    "allProfessionals": "Todos"
   }
 }

@@ -72,6 +72,14 @@
                   | transloco: { count: appointmentCount(professional) }
               }}
             </span>
+            <a
+              class="btn btn--ghost btn--sm"
+              routerLink="/calendar"
+              [queryParams]="{ professional: professional.id }"
+            >
+              {{ 'professionals.viewCalendar' | transloco }}
+              <app-icon name="chevron-right" />
+            </a>
           </footer>
         </li>
       }
