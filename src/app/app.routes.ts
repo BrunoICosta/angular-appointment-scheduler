@@ -18,6 +18,11 @@ export const routes: Routes = [
           import('./features/dashboard/dashboard.routes').then((m) => m.DASHBOARD_ROUTES),
       },
       {
+        path: 'calendar',
+        loadChildren: () =>
+          import('./features/calendar/calendar.routes').then((m) => m.CALENDAR_ROUTES),
+      },
+      {
         path: 'clients',
         loadChildren: () =>
           import('./features/clients/clients.routes').then((m) => m.CLIENTS_ROUTES),

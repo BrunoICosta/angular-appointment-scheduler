@@ -1,0 +1,159 @@
+// FullCalendar theming. FullCalendar v6 injects its base CSS at runtime; these rules only
+// map its custom properties to our tokens and refine a few details.
+
+.page--wide {
+  max-width: 1400px;
+}
+
+.calendar-card {
+  padding: 12px;
+
+  @media (min-width: 768px) {
+    padding: 20px;
+  }
+}
+
+.calendar-skeleton {
+  height: 640px;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--surface-2), var(--surface-3), var(--surface-2));
+  background-size: 200% 100%;
+  animation: skeleton 1.2s ease-in-out infinite;
+}
+
+@keyframes skeleton {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.fc {
+  --fc-border-color: var(--border);
+  --fc-page-bg-color: var(--surface);
+  --fc-neutral-bg-color: var(--surface-2);
+  --fc-non-business-color: color-mix(in srgb, var(--surface-3) 55%, transparent);
+  --fc-today-bg-color: color-mix(in srgb, var(--primary) 7%, transparent);
+  --fc-now-indicator-color: #ef4444;
+  --fc-highlight-color: color-mix(in srgb, var(--primary) 18%, transparent);
+  --fc-button-text-color: var(--text);
+  --fc-button-bg-color: var(--surface);
+  --fc-button-border-color: var(--border-strong);
+  --fc-button-hover-bg-color: var(--surface-2);
+  --fc-button-hover-border-color: var(--border-strong);
+  --fc-button-active-bg-color: var(--primary);
+  --fc-button-active-border-color: var(--primary);
+  --fc-event-border-color: transparent;
+
+  font-size: 0.875rem;
+
+  .fc-toolbar {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .fc-toolbar-title {
+    font-size: clamp(1rem, 0.9rem + 0.6vw, 1.3rem);
+    font-weight: 800;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  .fc-button {
+    padding: 0.45em 0.8em;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    text-transform: capitalize;
+    box-shadow: none !important;
+
+    &:focus-visible {
+      box-shadow: var(--focus-ring) !important;
+    }
+  }
+
+  .fc-button-primary:not(:disabled).fc-button-active,
+  .fc-button-primary:not(:disabled):active {
+    color: var(--on-primary);
+  }
+
+  .fc-col-header-cell-cushion,
+  .fc-daygrid-day-number {
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .fc-col-header-cell-cushion {
+    display: inline-block;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  .fc-timegrid-slot-label-cushion {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+
+  .fc-timegrid-slot {
+    height: 2.4em;
+  }
+
+  .fc-event {
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+  }
+
+  .fc-timegrid-event .fc-event-main {
+    padding: 3px 5px;
+  }
+
+  .fc-event-time {
+    font-weight: 700;
+  }
+
+  .fc-event--cancelled {
+    opacity: 0.55;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgb(255 255 255 / 18%) 0 6px,
+      transparent 6px 12px
+    );
+
+    .fc-event-title {
+      text-decoration: line-through;
+    }
+  }
+
+  .fc-event--completed {
+    filter: saturate(0.55);
+  }
+
+  .fc-daygrid-event {
+    padding: 1px 4px;
+  }
+
+  .fc-daygrid-dot-event .fc-event-title,
+  .fc-daygrid-dot-event .fc-event-time {
+    color: var(--text);
+  }
+
+  .fc-scrollgrid {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  @media (max-width: 767px) {
+    .fc-toolbar-title {
+      font-size: 1rem;
+    }
+
+    .fc-button {
+      padding: 0.4em 0.6em;
+      font-size: 0.8rem;
+    }
+  }
+}

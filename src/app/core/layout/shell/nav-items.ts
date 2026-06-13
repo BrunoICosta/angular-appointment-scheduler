@@ -10,6 +10,7 @@ export interface NavItem {
 
 export const NAV_ITEMS: readonly NavItem[] = [
   { path: '/', label: 'nav.dashboard', icon: 'dashboard', exact: true },
+  { path: '/calendar', label: 'nav.calendar', icon: 'calendar' },
   { path: '/clients', label: 'nav.clients', icon: 'users' },
   { path: '/professionals', label: 'nav.professionals', icon: 'briefcase' },
   { path: '/services', label: 'nav.services', icon: 'scissors' },

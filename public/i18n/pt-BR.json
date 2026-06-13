@@ -22,7 +22,8 @@
     "dashboard": "Início",
     "clients": "Clientes",
     "professionals": "Profissionais",
-    "services": "Serviços"
+    "services": "Serviços",
+    "calendar": "Agenda"
   },
   "shell": {
     "skipToContent": "Pular para o conteúdo",
@@ -123,5 +124,9 @@
     "deleteTitle": "Excluir serviço",
     "deleteMessage": "Tem certeza que deseja excluir {{name}}?",
     "inUse": "{{name}} possui {{count}} agendamentos e não pode ser excluído."
+  },
+  "calendar": {
+    "title": "Agenda",
+    "subtitle": "Visualize os atendimentos por mês, semana ou dia."
   }
 }

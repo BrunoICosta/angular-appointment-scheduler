@@ -22,7 +22,8 @@
     "dashboard": "Home",
     "clients": "Clients",
     "professionals": "Professionals",
-    "services": "Services"
+    "services": "Services",
+    "calendar": "Calendar"
   },
   "shell": {
     "skipToContent": "Skip to content",
@@ -123,5 +124,9 @@
     "deleteTitle": "Delete service",
     "deleteMessage": "Are you sure you want to delete {{name}}?",
     "inUse": "{{name}} has {{count}} appointments and cannot be deleted."
+  },
+  "calendar": {
+    "title": "Calendar",
+    "subtitle": "See appointments by month, week or day."
   }
 }

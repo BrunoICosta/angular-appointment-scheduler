@@ -1,0 +1,24 @@
+<section class="page page--wide">
+  <header class="page-header">
+    <div>
+      <h1>{{ 'calendar.title' | transloco }}</h1>
+      <p>{{ 'calendar.subtitle' | transloco }}</p>
+    </div>
+  </header>
+
+  <div class="card calendar-card">
+    @defer (on immediate) {
+      <app-scheduler-calendar
+        [events]="events()"
+        [businessHours]="businessHours()"
+        [language]="language()"
+      />
+    } @placeholder (minimum 200ms) {
+      <div class="calendar-skeleton" aria-hidden="true"></div>
+    } @loading (after 150ms; minimum 300ms) {
+      <div class="calendar-skeleton" role="status">
+        <span class="sr-only">{{ 'common.loading' | transloco }}</span>
+      </div>
+    }
+  </div>
+</section>
