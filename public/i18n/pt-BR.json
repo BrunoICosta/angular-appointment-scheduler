@@ -47,7 +47,12 @@
     "phone": "Telefone inválido. Use DDD + número, ex.: (11) 98765-4321.",
     "timeRequired": "Informe os horários de início e fim.",
     "timeRange": "O fim do expediente deve ser depois do início.",
-    "noWorkingDays": "Selecione pelo menos um dia de atendimento."
+    "noWorkingDays": "Selecione pelo menos um dia de atendimento.",
+    "endBeforeStart": "O horário de término deve ser depois do início.",
+    "pastSlot": "Não é possível agendar em um horário que já passou.",
+    "dayOff": "{{name}} não atende neste dia da semana.",
+    "outsideWorkingHours": "Fora do expediente de {{name}} ({{start}} às {{end}}).",
+    "overlap": "Conflito com outro agendamento deste profissional ({{start}} às {{end}})."
   },
   "clients": {
     "title": "Clientes",

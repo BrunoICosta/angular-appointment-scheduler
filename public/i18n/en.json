@@ -47,7 +47,12 @@
     "phone": "Invalid phone. Use area code + number, e.g. (11) 98765-4321.",
     "timeRequired": "Enter both start and end times.",
     "timeRange": "Closing time must be after opening time.",
-    "noWorkingDays": "Select at least one working day."
+    "noWorkingDays": "Select at least one working day.",
+    "endBeforeStart": "End time must be after start time.",
+    "pastSlot": "You cannot book a time that has already passed.",
+    "dayOff": "{{name}} does not work on this weekday.",
+    "outsideWorkingHours": "Outside {{name}}'s working hours ({{start}} to {{end}}).",
+    "overlap": "Conflicts with another appointment of this professional ({{start}} to {{end}})."
   },
   "clients": {
     "title": "Clients",
