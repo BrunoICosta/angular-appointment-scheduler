@@ -10,6 +10,12 @@
         }
       </p>
     </div>
+    <div class="page-header__actions">
+      <button type="button" class="btn btn--primary" (click)="newAppointment()">
+        <app-icon name="calendar-plus" />
+        {{ 'appointments.new' | transloco }}
+      </button>
+    </div>
   </header>
 
   <app-professional-filter
@@ -24,6 +30,7 @@
         [events]="events()"
         [businessHours]="businessHours()"
         [language]="language()"
+        (appointmentClicked)="editAppointment($event)"
       />
     } @placeholder (minimum 200ms) {
       <div class="calendar-skeleton" aria-hidden="true"></div>

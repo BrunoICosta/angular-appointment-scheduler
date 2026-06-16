@@ -3,17 +3,19 @@ import { Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { LanguageService } from '../../../../core/i18n/language.service';
+import { AppointmentDialogService } from '../../../../core/scheduling/appointment-dialog.service';
 import { AppointmentsStore } from '../../../../core/stores/appointments.store';
 import { ClientsStore } from '../../../../core/stores/clients.store';
 import { ProfessionalsStore } from '../../../../core/stores/professionals.store';
 import { ServicesStore } from '../../../../core/stores/services.store';
+import { IconComponent } from '../../../../shared/ui/icon/icon.component';
 import { ProfessionalFilterComponent } from '../../components/professional-filter/professional-filter.component';
 import { SchedulerCalendarComponent } from '../../components/scheduler-calendar/scheduler-calendar.component';
 import { toBusinessHours, toCalendarEvents } from '../../data-access/calendar-events';
 
 @Component({
   selector: 'app-calendar-page',
-  imports: [TranslocoPipe, SchedulerCalendarComponent, ProfessionalFilterComponent],
+  imports: [TranslocoPipe, IconComponent, SchedulerCalendarComponent, ProfessionalFilterComponent],
   templateUrl: './calendar-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -23,6 +25,7 @@ export class CalendarPageComponent {
   private readonly professionalsStore = inject(ProfessionalsStore);
   private readonly clients = inject(ClientsStore);
   private readonly services = inject(ServicesStore);
+  private readonly dialog = inject(AppointmentDialogService);
   protected readonly language = inject(LanguageService).current;
 
   /** Bound from the `?professional=` query param (router component input binding). */
@@ -49,6 +52,14 @@ export class CalendarPageComponent {
     const selected = this.selected();
     return toBusinessHours(selected ? [selected] : this.professionalsStore.all());
   });
+
+  protected newAppointment(): void {
+    this.dialog.openCreate({ professionalId: this.selected()?.id });
+  }
+
+  protected editAppointment(id: string): void {
+    this.dialog.openEdit(id);
+  }
 
   protected selectProfessional(id: string | null): void {
     void this.router.navigate([], {

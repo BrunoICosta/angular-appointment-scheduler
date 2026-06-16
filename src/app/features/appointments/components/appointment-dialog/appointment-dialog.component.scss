@@ -1,0 +1,50 @@
+.when {
+  gap: 12px;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--accent, var(--primary)) 35%, var(--border));
+  border-left: 4px solid var(--accent, var(--primary));
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--accent, var(--primary)) 8%, var(--surface));
+
+  > app-icon {
+    color: var(--accent, var(--primary));
+  }
+
+  div {
+    display: grid;
+    flex: 1;
+    min-width: 0;
+  }
+
+  span {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+}
+
+.summary__price {
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+.spinner {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

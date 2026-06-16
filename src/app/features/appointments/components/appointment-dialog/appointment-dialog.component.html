@@ -1,0 +1,199 @@
+<app-modal
+  [wide]="true"
+  [heading]="(isEdit() ? 'appointments.editTitle' : 'appointments.newTitle') | transloco"
+  (closed)="closed.emit()"
+>
+  <form id="appointment-form" class="form-grid" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="field">
+      <label class="field__label" for="appointment-professional">
+        {{ 'appointments.fields.professional' | transloco }}
+      </label>
+      <select
+        id="appointment-professional"
+        class="select"
+        formControlName="professionalId"
+        aria-describedby="appointment-professional-error"
+      >
+        <option value="" disabled>{{ 'appointments.selectProfessional' | transloco }}</option>
+        @for (professional of professionals(); track professional.id) {
+          <option [value]="professional.id">
+            {{ professional.name }} — {{ professional.specialty }}
+          </option>
+        }
+      </select>
+      <app-field-error
+        [control]="form.controls.professionalId"
+        id="appointment-professional-error"
+      />
+    </div>
+
+    <div class="field">
+      <label class="field__label" for="appointment-client">
+        {{ 'appointments.fields.client' | transloco }}
+      </label>
+      <select
+        id="appointment-client"
+        class="select"
+        formControlName="clientId"
+        aria-describedby="appointment-client-error"
+      >
+        <option value="" disabled>{{ 'appointments.selectClient' | transloco }}</option>
+        @for (client of clients(); track client.id) {
+          <option [value]="client.id">{{ client.name }}</option>
+        }
+      </select>
+      <app-field-error [control]="form.controls.clientId" id="appointment-client-error" />
+    </div>
+
+    <div class="field field--full">
+      <label class="field__label" for="appointment-service">
+        {{ 'appointments.fields.service' | transloco }}
+      </label>
+      <select
+        id="appointment-service"
+        class="select"
+        formControlName="serviceId"
+        aria-describedby="appointment-service-error"
+      >
+        <option value="" disabled>{{ 'appointments.selectService' | transloco }}</option>
+        @for (service of services(); track service.id) {
+          <option [value]="service.id">
+            {{ service.name }} ·
+            {{ 'services.minutes' | transloco: { minutes: service.durationMinutes } }} ·
+            {{ service.price | localeCurrency }}
+          </option>
+        }
+      </select>
+      <app-field-error [control]="form.controls.serviceId" id="appointment-service-error" />
+    </div>
+
+    <div class="field field--full form-grid form-grid--3 when">
+      <div class="field">
+        <label class="field__label" for="appointment-date">
+          {{ 'appointments.fields.date' | transloco }}
+        </label>
+        <input
+          id="appointment-date"
+          class="input"
+          type="date"
+          formControlName="date"
+          aria-describedby="appointment-date-error appointment-slot-error"
+        />
+        <app-field-error [control]="form.controls.date" id="appointment-date-error" />
+      </div>
+      <div class="field">
+        <label class="field__label" for="appointment-start">
+          {{ 'appointments.fields.start' | transloco }}
+        </label>
+        <input
+          id="appointment-start"
+          class="input"
+          type="time"
+          step="900"
+          formControlName="startTime"
+          aria-describedby="appointment-start-error appointment-slot-error"
+        />
+        <app-field-error [control]="form.controls.startTime" id="appointment-start-error" />
+      </div>
+      <div class="field">
+        <label class="field__label" for="appointment-end">
+          {{ 'appointments.fields.end' | transloco }}
+        </label>
+        <input
+          id="appointment-end"
+          class="input"
+          type="time"
+          step="900"
+          formControlName="endTime"
+          aria-describedby="appointment-end-error appointment-slot-error"
+        />
+        <app-field-error [control]="form.controls.endTime" id="appointment-end-error" />
+      </div>
+    </div>
+
+    <div class="field field--full" id="appointment-slot-error" aria-live="polite">
+      @if (status() === 'PENDING') {
+        <p class="form-alert form-alert--info">
+          <span class="spinner" aria-hidden="true"></span>
+          {{ 'appointments.checkingAvailability' | transloco }}
+        </p>
+      } @else if (slotError(); as error) {
+        <p class="form-alert form-alert--error">
+          <app-icon name="alert" />
+          {{ error.key | transloco: error.params }}
+        </p>
+      } @else if (status() === 'VALID') {
+        <p class="form-alert form-alert--success">
+          <app-icon name="check" />
+          {{ 'appointments.slotAvailable' | transloco }}
+        </p>
+      }
+    </div>
+
+    @if (isEdit()) {
+      <div class="field">
+        <label class="field__label" for="appointment-status">
+          {{ 'appointments.fields.status' | transloco }}
+        </label>
+        <select id="appointment-status" class="select" formControlName="status">
+          @for (status of statuses; track status) {
+            <option [value]="status">{{ 'appointments.status.' + status | transloco }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    <div class="field" [class.field--full]="!isEdit()">
+      <label class="field__label" for="appointment-notes">
+        {{ 'appointments.fields.notes' | transloco }}
+        <span class="field__hint">({{ 'common.optional' | transloco }})</span>
+      </label>
+      <textarea
+        id="appointment-notes"
+        class="textarea"
+        rows="2"
+        formControlName="notes"
+        aria-describedby="appointment-notes-error"
+      ></textarea>
+      <app-field-error [control]="form.controls.notes" id="appointment-notes-error" />
+    </div>
+
+    @if (selectedService(); as service) {
+      <div class="summary field--full" [style.--accent]="selectedProfessional()?.color">
+        <app-icon name="calendar" />
+        <div>
+          <strong>{{ service.name }}</strong>
+          @if (startDate(); as start) {
+            <span
+              >{{ start | localeDate: 'fullDate' }}, {{ value().startTime }}–{{
+                value().endTime
+              }}</span
+            >
+          }
+        </div>
+        <strong class="summary__price">{{ service.price | localeCurrency }}</strong>
+      </div>
+    }
+  </form>
+
+  <ng-container modalFooter>
+    @if (isEdit()) {
+      <button type="button" class="btn btn--danger-ghost" (click)="remove()">
+        <app-icon name="trash" />
+        {{ 'common.delete' | transloco }}
+      </button>
+    }
+    <span class="spacer"></span>
+    <button type="button" class="btn btn--secondary" (click)="closed.emit()">
+      {{ 'common.cancel' | transloco }}
+    </button>
+    <button
+      type="submit"
+      form="appointment-form"
+      class="btn btn--primary"
+      [disabled]="status() === 'PENDING'"
+    >
+      {{ (isEdit() ? 'common.save' : 'appointments.book') | transloco }}
+    </button>
+  </ng-container>
+</app-modal>

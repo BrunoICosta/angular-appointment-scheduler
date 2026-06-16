@@ -137,5 +137,36 @@
     "subtitleFor": "Agenda de {{name}}.",
     "filterLabel": "Filtrar por profissional",
     "allProfessionals": "Todos"
+  },
+  "appointments": {
+    "new": "Novo agendamento",
+    "newTitle": "Novo agendamento",
+    "editTitle": "Editar agendamento",
+    "book": "Agendar",
+    "selectProfessional": "Selecione o profissional",
+    "selectClient": "Selecione o cliente",
+    "selectService": "Selecione o serviço",
+    "checkingAvailability": "Verificando disponibilidade…",
+    "slotAvailable": "Horário disponível.",
+    "fields": {
+      "professional": "Profissional",
+      "client": "Cliente",
+      "service": "Serviço",
+      "date": "Data",
+      "start": "Início",
+      "end": "Término",
+      "status": "Situação",
+      "notes": "Observações"
+    },
+    "status": {
+      "scheduled": "Agendado",
+      "completed": "Concluído",
+      "cancelled": "Cancelado"
+    },
+    "created": "Agendamento de {{name}} criado.",
+    "updated": "Agendamento de {{name}} atualizado.",
+    "deleted": "Agendamento excluído.",
+    "deleteTitle": "Excluir agendamento",
+    "deleteMessage": "Tem certeza que deseja excluir este agendamento? Para manter o histórico, prefira marcá-lo como cancelado."
   }
 }

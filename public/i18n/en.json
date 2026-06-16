@@ -137,5 +137,36 @@
     "subtitleFor": "{{name}}'s schedule.",
     "filterLabel": "Filter by professional",
     "allProfessionals": "Everyone"
+  },
+  "appointments": {
+    "new": "New appointment",
+    "newTitle": "New appointment",
+    "editTitle": "Edit appointment",
+    "book": "Book",
+    "selectProfessional": "Select a professional",
+    "selectClient": "Select a client",
+    "selectService": "Select a service",
+    "checkingAvailability": "Checking availability…",
+    "slotAvailable": "This time is available.",
+    "fields": {
+      "professional": "Professional",
+      "client": "Client",
+      "service": "Service",
+      "date": "Date",
+      "start": "Start",
+      "end": "End",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "status": {
+      "scheduled": "Scheduled",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "created": "Appointment for {{name}} created.",
+    "updated": "Appointment for {{name}} updated.",
+    "deleted": "Appointment deleted.",
+    "deleteTitle": "Delete appointment",
+    "deleteMessage": "Are you sure you want to delete this appointment? To keep the history, consider marking it as cancelled instead."
   }
 }

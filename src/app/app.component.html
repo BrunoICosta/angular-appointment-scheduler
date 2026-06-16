@@ -1,3 +1,11 @@
 <router-outlet />
+
+<!-- The appointment dialog is opened from several features; @defer keeps it out of the initial bundle. -->
+@defer (when appointmentDialog.isOpen()) {
+  @if (appointmentDialog.state(); as state) {
+    <app-appointment-dialog [state]="state" (closed)="appointmentDialog.close()" />
+  }
+}
+
 <app-confirm-dialog />
 <app-toast-container />
