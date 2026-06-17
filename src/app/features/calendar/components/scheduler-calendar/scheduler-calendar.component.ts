@@ -1,13 +1,35 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { BusinessHoursInput, CalendarOptions, EventClickArg, EventInput } from '@fullcalendar/core';
+import {
+  BusinessHoursInput,
+  CalendarOptions,
+  DateSelectArg,
+  EventClickArg,
+  EventDropArg,
+  EventInput,
+} from '@fullcalendar/core';
 import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin, { EventResizeDoneArg } from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 import { AppLanguage } from '../../../../core/i18n/languages';
 import { mediaQuerySignal } from '../../../../shared/utils/media-query.utils';
+
+export interface SlotSelection {
+  readonly start: Date;
+  readonly end: Date;
+  /** True when picked in the month view, where only the day is known. */
+  readonly allDay: boolean;
+}
+
+export interface AppointmentMove {
+  readonly id: string;
+  readonly start: Date;
+  readonly end: Date;
+  /** Puts the event back where it was; called when the move breaks a scheduling rule. */
+  readonly revert: () => void;
+}
 
 /**
  * Thin wrapper around FullCalendar. It owns every FullCalendar-specific option so the page
@@ -26,6 +48,8 @@ export class SchedulerCalendarComponent {
   readonly language = input.required<AppLanguage>();
 
   readonly appointmentClicked = output<string>();
+  readonly slotSelected = output<SlotSelection>();
+  readonly appointmentMoved = output<AppointmentMove>();
 
   private readonly compact = mediaQuerySignal('(max-width: 767px)');
 
@@ -58,10 +82,35 @@ export class SchedulerCalendarComponent {
       businessHours: this.businessHours(),
       eventTimeFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
       slotLabelFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
+      selectable: true,
+      selectMirror: true,
+      editable: true,
+      eventDurationEditable: true,
+      longPressDelay: 350,
+      select: (info: DateSelectArg) => {
+        info.view.calendar.unselect();
+        this.slotSelected.emit({ start: info.start, end: info.end, allDay: info.allDay });
+      },
+      eventDrop: (info: EventDropArg) => this.emitMove(info),
+      eventResize: (info: EventResizeDoneArg) => this.emitMove(info),
       eventClick: (info: EventClickArg) => {
         info.jsEvent.preventDefault();
         this.appointmentClicked.emit(info.event.id);
       },
     };
   });
+
+  private emitMove(info: EventDropArg | EventResizeDoneArg): void {
+    const { event } = info;
+    if (!event.start || !event.end) {
+      info.revert();
+      return;
+    }
+    this.appointmentMoved.emit({
+      id: event.id,
+      start: event.start,
+      end: event.end,
+      revert: () => info.revert(),
+    });
+  }
 }

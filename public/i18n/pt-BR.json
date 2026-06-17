@@ -136,7 +136,8 @@
     "subtitle": "Visualize os atendimentos por mês, semana ou dia.",
     "subtitleFor": "Agenda de {{name}}.",
     "filterLabel": "Filtrar por profissional",
-    "allProfessionals": "Todos"
+    "allProfessionals": "Todos",
+    "hint": "Clique em um horário livre para agendar, arraste para reagendar e puxe a borda para mudar a duração."
   },
   "appointments": {
     "new": "Novo agendamento",
@@ -167,6 +168,7 @@
     "updated": "Agendamento de {{name}} atualizado.",
     "deleted": "Agendamento excluído.",
     "deleteTitle": "Excluir agendamento",
-    "deleteMessage": "Tem certeza que deseja excluir este agendamento? Para manter o histórico, prefira marcá-lo como cancelado."
+    "deleteMessage": "Tem certeza que deseja excluir este agendamento? Para manter o histórico, prefira marcá-lo como cancelado.",
+    "rescheduled": "Agendamento de {{name}} reagendado."
   }
 }

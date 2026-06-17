@@ -25,12 +25,18 @@
   />
 
   <div class="card calendar-card">
+    <p class="calendar-hint">
+      <app-icon name="info" />
+      {{ 'calendar.hint' | transloco }}
+    </p>
     @defer (on immediate) {
       <app-scheduler-calendar
         [events]="events()"
         [businessHours]="businessHours()"
         [language]="language()"
         (appointmentClicked)="editAppointment($event)"
+        (slotSelected)="onSlotSelected($event)"
+        (appointmentMoved)="onAppointmentMoved($event)"
       />
     } @placeholder (minimum 200ms) {
       <div class="calendar-skeleton" aria-hidden="true"></div>

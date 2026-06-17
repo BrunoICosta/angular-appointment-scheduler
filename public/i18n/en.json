@@ -136,7 +136,8 @@
     "subtitle": "See appointments by month, week or day.",
     "subtitleFor": "{{name}}'s schedule.",
     "filterLabel": "Filter by professional",
-    "allProfessionals": "Everyone"
+    "allProfessionals": "Everyone",
+    "hint": "Click a free slot to book, drag to reschedule and pull the edge to change the duration."
   },
   "appointments": {
     "new": "New appointment",
@@ -167,6 +168,7 @@
     "updated": "Appointment for {{name}} updated.",
     "deleted": "Appointment deleted.",
     "deleteTitle": "Delete appointment",
-    "deleteMessage": "Are you sure you want to delete this appointment? To keep the history, consider marking it as cancelled instead."
+    "deleteMessage": "Are you sure you want to delete this appointment? To keep the history, consider marking it as cancelled instead.",
+    "rescheduled": "Appointment for {{name}} rescheduled."
   }
 }

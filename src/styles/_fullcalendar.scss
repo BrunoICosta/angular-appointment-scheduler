@@ -13,6 +13,20 @@
   }
 }
 
+.calendar-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+
+  app-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
 .calendar-skeleton {
   height: 640px;
   border-radius: var(--radius);
