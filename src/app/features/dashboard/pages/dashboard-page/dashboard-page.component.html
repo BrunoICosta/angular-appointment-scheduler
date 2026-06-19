@@ -1,0 +1,143 @@
+<section class="page">
+  <header class="page-header">
+    <div>
+      <h1>{{ 'dashboard.title' | transloco }}</h1>
+      <p class="first-upper">{{ now() | localeDate: 'fullDate' }}</p>
+    </div>
+    <div class="page-header__actions">
+      <a class="btn btn--secondary" routerLink="/calendar">
+        <app-icon name="calendar" />
+        {{ 'dashboard.openCalendar' | transloco }}
+      </a>
+      <button type="button" class="btn btn--primary" (click)="newAppointment()">
+        <app-icon name="calendar-plus" />
+        {{ 'appointments.new' | transloco }}
+      </button>
+    </div>
+  </header>
+
+  <div class="stats">
+    <app-stat-card
+      icon="calendar"
+      [label]="'dashboard.stats.today' | transloco"
+      [value]="todayCount()"
+    />
+    <app-stat-card
+      icon="clock"
+      style="--stat-accent: #0d9488"
+      [label]="'dashboard.stats.week' | transloco"
+      [value]="weekCount()"
+    />
+    <app-stat-card
+      icon="wallet"
+      style="--stat-accent: #16a34a"
+      [label]="'dashboard.stats.revenue' | transloco"
+      [value]="weekRevenue() | localeCurrency"
+      [hint]="'dashboard.stats.revenueHint' | transloco"
+    />
+    <app-stat-card
+      icon="users"
+      style="--stat-accent: #db2777"
+      [label]="'dashboard.stats.clients' | transloco"
+      [value]="clientCount()"
+    />
+  </div>
+
+  <div class="dashboard-grid">
+    <section class="card" aria-labelledby="upcoming-title">
+      <header class="card__header">
+        <h2 id="upcoming-title">{{ 'dashboard.upcoming' | transloco }}</h2>
+        <a class="btn btn--ghost btn--sm" routerLink="/calendar">
+          {{ 'dashboard.seeAll' | transloco }}
+          <app-icon name="chevron-right" />
+        </a>
+      </header>
+
+      @if (upcomingGroups().length > 0) {
+        <div class="upcoming">
+          @for (group of upcomingGroups(); track group.date.getTime()) {
+            <h3 class="upcoming__day">
+              @switch (dayLabel(group.date)) {
+                @case ('today') {
+                  {{ 'dashboard.today' | transloco }}
+                }
+                @case ('tomorrow') {
+                  {{ 'dashboard.tomorrow' | transloco }}
+                }
+                @default {
+                  <span class="first-upper">{{ group.date | localeDate: 'EEEE, d MMM' }}</span>
+                }
+              }
+            </h3>
+            <ul class="upcoming__list">
+              @for (item of group.items; track item.appointment.id) {
+                <li>
+                  <button
+                    type="button"
+                    class="upcoming__item"
+                    [style.--accent]="item.color"
+                    (click)="open(item.appointment)"
+                  >
+                    <span class="upcoming__time">
+                      <strong>{{ item.appointment.start | localeDate: 'shortTime' }}</strong>
+                      <small>{{ item.appointment.end | localeDate: 'shortTime' }}</small>
+                    </span>
+                    <span class="upcoming__info">
+                      <strong>{{ item.clientName }}</strong>
+                      <small>{{ item.serviceName }}</small>
+                    </span>
+                    <span class="upcoming__professional">
+                      <span class="dot" [style.--dot-color]="item.color" aria-hidden="true"></span>
+                      {{ item.professionalName }}
+                    </span>
+                    <span class="upcoming__price">{{ item.price | localeCurrency }}</span>
+                  </button>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <app-icon name="inbox" />
+          <strong>{{ 'dashboard.noUpcoming' | transloco }}</strong>
+          <p>{{ 'dashboard.noUpcomingHint' | transloco }}</p>
+          <button type="button" class="btn btn--primary" (click)="newAppointment()">
+            <app-icon name="calendar-plus" />
+            {{ 'appointments.new' | transloco }}
+          </button>
+        </div>
+      }
+    </section>
+
+    <section class="card" aria-labelledby="team-title">
+      <header class="card__header">
+        <h2 id="team-title">{{ 'dashboard.teamToday' | transloco }}</h2>
+      </header>
+      <ul class="team">
+        @for (row of todayByProfessional(); track row.professional.id) {
+          <li class="team__row">
+            <span
+              class="dot"
+              [style.--dot-color]="row.professional.color"
+              aria-hidden="true"
+            ></span>
+            <span class="team__name">
+              <strong>{{ row.professional.name }}</strong>
+              <small>{{ row.professional.specialty }}</small>
+            </span>
+            @if (row.working) {
+              <span class="badge badge--scheduled">
+                {{ 'dashboard.appointmentsToday' | transloco: { count: row.count } }}
+              </span>
+            } @else {
+              <span class="badge">{{ 'professionals.dayOff' | transloco }}</span>
+            }
+          </li>
+        } @empty {
+          <li class="team__row">{{ 'professionals.empty' | transloco }}</li>
+        }
+      </ul>
+    </section>
+  </div>
+</section>

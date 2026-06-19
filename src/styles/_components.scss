@@ -371,3 +371,13 @@
   width: 14px;
   height: 14px;
 }
+
+.first-upper {
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+span.first-upper {
+  display: inline-block;
+}
