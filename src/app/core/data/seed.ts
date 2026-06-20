@@ -191,9 +191,9 @@ export function buildSeedAppointments(now: Date): Appointment[] {
       const dailyLimit = 2 + Math.floor(random() * 3);
 
       while (booked < dailyLimit) {
-        const service = SEED_SERVICES.find(
-          (item) => item.id === services[Math.floor(random() * services.length)],
-        );
+        // Draw once: calling random() inside find() would re-roll it for every item.
+        const serviceId = services[Math.floor(random() * services.length)];
+        const service = SEED_SERVICES.find((item) => item.id === serviceId);
         if (!service || cursor + service.durationMinutes > close) {
           break;
         }
