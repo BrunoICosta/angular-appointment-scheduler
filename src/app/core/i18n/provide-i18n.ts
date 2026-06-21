@@ -1,5 +1,3 @@
-import { registerLocaleData } from '@angular/common';
-import localePt from '@angular/common/locales/pt';
 import {
   EnvironmentProviders,
   inject,
@@ -11,11 +9,12 @@ import { provideTransloco } from '@jsverse/transloco';
 
 import { LanguageService } from './language.service';
 import { DEFAULT_LANGUAGE, LANGUAGES } from './languages';
+import { registerAppLocales } from './register-locales';
 import { TranslocoHttpLoader } from './transloco-loader';
 
 /** Registers Transloco, locale data for formatting and preloads the initial language. */
 export function provideI18n(): EnvironmentProviders {
-  registerLocaleData(localePt, 'pt-BR');
+  registerAppLocales();
 
   return makeEnvironmentProviders([
     provideTransloco({
