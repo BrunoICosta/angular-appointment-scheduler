@@ -31,6 +31,14 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+
+  @media (max-width: 479px) {
+    width: 100%;
+
+    .btn {
+      flex: 1 1 auto;
+    }
+  }
 }
 
 // ---- Card ------------------------------------------------------------------

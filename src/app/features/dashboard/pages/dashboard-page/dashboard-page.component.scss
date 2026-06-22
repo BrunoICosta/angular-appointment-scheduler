@@ -1,6 +1,6 @@
 .stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
   gap: 12px;
 }
 
@@ -37,7 +37,7 @@
 
 .upcoming__item {
   display: grid;
-  grid-template-columns: 56px minmax(0, 1fr) auto;
+  grid-template-columns: 72px minmax(0, 1fr) auto;
   align-items: center;
   gap: 4px 14px;
   width: 100%;
@@ -57,7 +57,7 @@
   }
 
   @media (min-width: 640px) {
-    grid-template-columns: 64px minmax(0, 1fr) 170px auto;
+    grid-template-columns: 80px minmax(0, 1fr) 170px auto;
   }
 }
 

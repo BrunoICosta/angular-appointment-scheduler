@@ -52,6 +52,24 @@ import { IconName } from '../../../../shared/ui/icon/icons';
       font-variant-numeric: tabular-nums;
     }
 
+    @media (max-width: 479px) {
+      :host {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px;
+      }
+
+      .stat__icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .stat__value {
+        font-size: 1.2rem;
+      }
+    }
+
     .stat__hint {
       color: var(--text-subtle);
       font-size: 0.75rem;
