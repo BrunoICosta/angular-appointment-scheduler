@@ -29,7 +29,11 @@
     "skipToContent": "Skip to content",
     "mainNavigation": "Main navigation",
     "language": "Language",
-    "darkMode": "Dark mode"
+    "darkMode": "Dark mode",
+    "resetDemo": "Restore demo data",
+    "resetDemoMessage": "All professionals, clients, services and appointments will go back to the sample data. Your changes will be lost.",
+    "resetDemoConfirm": "Restore",
+    "resetDemoDone": "Demo data restored."
   },
   "dashboard": {
     "title": "Overview",

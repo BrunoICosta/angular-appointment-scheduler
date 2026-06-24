@@ -3,6 +3,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
 
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
+import { ResetDemoButtonComponent } from '../reset-demo-button/reset-demo-button.component';
 import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
 import { ThemeToggleComponent } from '../theme-toggle/theme-toggle.component';
 import { NAV_ITEMS } from './nav-items';
@@ -21,6 +22,7 @@ import { NAV_ITEMS } from './nav-items';
     IconComponent,
     LanguageSwitcherComponent,
     ThemeToggleComponent,
+    ResetDemoButtonComponent,
   ],
   templateUrl: './shell.component.html',
   styleUrl: './shell.component.scss',

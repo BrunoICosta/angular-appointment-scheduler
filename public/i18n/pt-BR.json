@@ -29,7 +29,11 @@
     "skipToContent": "Pular para o conteúdo",
     "mainNavigation": "Navegação principal",
     "language": "Idioma",
-    "darkMode": "Modo escuro"
+    "darkMode": "Modo escuro",
+    "resetDemo": "Restaurar dados de demonstração",
+    "resetDemoMessage": "Todos os profissionais, clientes, serviços e agendamentos voltarão aos dados de exemplo. Suas alterações serão perdidas.",
+    "resetDemoConfirm": "Restaurar",
+    "resetDemoDone": "Dados de demonstração restaurados."
   },
   "dashboard": {
     "title": "Visão geral",
