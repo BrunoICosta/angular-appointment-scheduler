@@ -1,6 +1,9 @@
 {
   "name": "angular-appointment-scheduler",
-  "version": "0.0.0",
+  "description": "Agenda para clínicas e salões com Angular 20, FullCalendar e Transloco.",
+  "license": "MIT",
+  "author": "Bruno Vinicius Isaac Costa",
+  "version": "1.0.0",
   "scripts": {
     "start": "ng serve",
     "build": "ng build",
