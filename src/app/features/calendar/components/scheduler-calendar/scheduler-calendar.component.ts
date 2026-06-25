@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import {
   BusinessHoursInput,
   CalendarOptions,
   DateSelectArg,
+  DateSpanApi,
   EventClickArg,
   EventDropArg,
   EventInput,
@@ -14,6 +15,7 @@ import interactionPlugin, { EventResizeDoneArg } from '@fullcalendar/interaction
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 import { AppLanguage } from '../../../../core/i18n/languages';
+import { CLOCK } from '../../../../core/utils/clock.token';
 import { mediaQuerySignal } from '../../../../shared/utils/media-query.utils';
 
 export interface SlotSelection {
@@ -52,6 +54,7 @@ export class SchedulerCalendarComponent {
   readonly appointmentMoved = output<AppointmentMove>();
 
   private readonly compact = mediaQuerySignal('(max-width: 767px)');
+  private readonly clock = inject(CLOCK);
 
   protected readonly options = computed<CalendarOptions>(() => {
     const compact = this.compact();
@@ -87,6 +90,10 @@ export class SchedulerCalendarComponent {
       editable: true,
       eventDurationEditable: true,
       longPressDelay: 350,
+      // Past slots can never be booked, so do not even offer the selection.
+      // In the month view a whole day is selected: today stays selectable.
+      selectAllow: (span: DateSpanApi) =>
+        (span.allDay ? span.end : span.start).getTime() > this.clock().getTime(),
       select: (info: DateSelectArg) => {
         info.view.calendar.unselect();
         this.slotSelected.emit({ start: info.start, end: info.end, allDay: info.allDay });

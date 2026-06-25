@@ -18,7 +18,6 @@ export function toCalendarEvents(
     const client = lookups.clients.get(appointment.clientId);
     const service = lookups.services.get(appointment.serviceId);
     const color = professional?.color ?? '#64748b';
-    const isCancelled = appointment.status === 'cancelled';
 
     return {
       id: appointment.id,
@@ -28,8 +27,8 @@ export function toCalendarEvents(
       backgroundColor: color,
       borderColor: color,
       textColor: '#ffffff',
-      // Cancelled appointments stay visible for history but cannot be moved.
-      editable: !isCancelled,
+      // Completed and cancelled appointments stay visible as history but are locked.
+      editable: appointment.status === 'scheduled',
       classNames: [`fc-event--${appointment.status}`],
       extendedProps: { status: appointment.status, professionalName: professional?.name },
     };
