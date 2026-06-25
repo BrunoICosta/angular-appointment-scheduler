@@ -17,21 +17,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { AppLanguage } from '../../../../core/i18n/languages';
 import { CLOCK } from '../../../../core/utils/clock.token';
 import { mediaQuerySignal } from '../../../../shared/utils/media-query.utils';
-
-export interface SlotSelection {
-  readonly start: Date;
-  readonly end: Date;
-  /** True when picked in the month view, where only the day is known. */
-  readonly allDay: boolean;
-}
-
-export interface AppointmentMove {
-  readonly id: string;
-  readonly start: Date;
-  readonly end: Date;
-  /** Puts the event back where it was; called when the move breaks a scheduling rule. */
-  readonly revert: () => void;
-}
+import { AppointmentMove, SlotSelection } from './scheduler-calendar.models';
 
 /**
  * Thin wrapper around FullCalendar. It owns every FullCalendar-specific option so the page

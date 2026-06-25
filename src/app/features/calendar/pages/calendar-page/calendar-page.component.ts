@@ -14,11 +14,11 @@ import { IconComponent } from '../../../../shared/ui/icon/icon.component';
 import { ToastService } from '../../../../shared/ui/toast/toast.service';
 import { addMinutes, timeToMinutes } from '../../../../shared/utils/date-time.utils';
 import { ProfessionalFilterComponent } from '../../components/professional-filter/professional-filter.component';
+import { SchedulerCalendarComponent } from '../../components/scheduler-calendar/scheduler-calendar.component';
 import {
   AppointmentMove,
-  SchedulerCalendarComponent,
   SlotSelection,
-} from '../../components/scheduler-calendar/scheduler-calendar.component';
+} from '../../components/scheduler-calendar/scheduler-calendar.models';
 import { toBusinessHours, toCalendarEvents } from '../../data-access/calendar-events';
 import { describeSlotIssue } from '../../data-access/slot-issue-message';
 
