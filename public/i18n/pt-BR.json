@@ -16,7 +16,11 @@
     "actions": "Ações",
     "optional": "opcional",
     "saved": "Alterações salvas.",
-    "deleted": "Registro excluído."
+    "deleted": "Registro excluído.",
+    "appointments": "Agendamentos",
+    "minutes": "{{minutes}} min",
+    "dayOff": "Folga",
+    "newAppointment": "Novo agendamento"
   },
   "nav": {
     "dashboard": "Início",
@@ -34,25 +38,6 @@
     "resetDemoMessage": "Todos os profissionais, clientes, serviços e agendamentos voltarão aos dados de exemplo. Suas alterações serão perdidas.",
     "resetDemoConfirm": "Restaurar",
     "resetDemoDone": "Dados de demonstração restaurados."
-  },
-  "dashboard": {
-    "title": "Visão geral",
-    "openCalendar": "Abrir agenda",
-    "upcoming": "Próximos atendimentos",
-    "seeAll": "Ver agenda",
-    "today": "Hoje",
-    "tomorrow": "Amanhã",
-    "noUpcoming": "Nenhum atendimento agendado",
-    "noUpcomingHint": "Os próximos agendamentos aparecerão aqui.",
-    "teamToday": "Equipe hoje",
-    "appointmentsToday": "{{count}} hoje",
-    "stats": {
-      "today": "Atendimentos hoje",
-      "week": "Nesta semana",
-      "revenue": "Receita prevista na semana",
-      "revenueHint": "Exclui cancelados",
-      "clients": "Clientes cadastrados"
-    }
   },
   "validation": {
     "required": "Campo obrigatório.",
@@ -72,122 +57,5 @@
     "dayOff": "{{name}} não atende neste dia da semana.",
     "outsideWorkingHours": "Fora do expediente de {{name}} ({{start}} às {{end}}).",
     "overlap": "Conflito com outro agendamento deste profissional ({{start}} às {{end}})."
-  },
-  "clients": {
-    "title": "Clientes",
-    "subtitle": "{{count}} clientes cadastrados",
-    "new": "Novo cliente",
-    "newTitle": "Novo cliente",
-    "editTitle": "Editar cliente",
-    "searchLabel": "Buscar clientes",
-    "searchPlaceholder": "Buscar por nome, e-mail, telefone ou CPF",
-    "appointments": "Agendamentos",
-    "fields": {
-      "name": "Nome completo",
-      "phone": "Telefone",
-      "email": "E-mail",
-      "cpf": "CPF",
-      "notes": "Observações"
-    },
-    "empty": "Nenhum cliente cadastrado",
-    "emptyHint": "Cadastre seu primeiro cliente para começar a agendar.",
-    "noResults": "Nenhum cliente encontrado",
-    "noResultsHint": "Tente buscar por outro termo.",
-    "created": "Cliente {{name}} cadastrado.",
-    "updated": "Cliente {{name}} atualizado.",
-    "deleted": "Cliente {{name}} excluído.",
-    "deleteTitle": "Excluir cliente",
-    "deleteMessage": "Tem certeza que deseja excluir {{name}}?",
-    "deleteWithAppointments": "Tem certeza que deseja excluir {{name}}? Os {{count}} agendamentos deste cliente também serão removidos."
-  },
-  "professionals": {
-    "title": "Profissionais",
-    "subtitle": "Equipe, especialidades e horários de atendimento.",
-    "new": "Novo profissional",
-    "newTitle": "Novo profissional",
-    "editTitle": "Editar profissional",
-    "specialtyPlaceholder": "Ex.: Cabeleireira, Fisioterapeuta",
-    "customColor": "Cor personalizada",
-    "opensAt": "Início do expediente",
-    "closesAt": "Fim do expediente",
-    "to": "até",
-    "dayOff": "Folga",
-    "appointmentCount": "{{count}} agendamentos",
-    "fields": {
-      "name": "Nome",
-      "specialty": "Especialidade",
-      "color": "Cor na agenda",
-      "workingHours": "Horário de atendimento"
-    },
-    "empty": "Nenhum profissional cadastrado",
-    "emptyHint": "Cadastre a equipe para liberar a agenda.",
-    "created": "Profissional {{name}} cadastrado.",
-    "updated": "Profissional {{name}} atualizado.",
-    "deleted": "Profissional {{name}} excluído.",
-    "deleteTitle": "Excluir profissional",
-    "deleteMessage": "Tem certeza que deseja excluir {{name}}?",
-    "deleteWithAppointments": "Tem certeza que deseja excluir {{name}}? Os {{count}} agendamentos deste profissional também serão removidos.",
-    "viewCalendar": "Ver agenda"
-  },
-  "services": {
-    "title": "Serviços",
-    "subtitle": "Catálogo de serviços com duração e preço.",
-    "new": "Novo serviço",
-    "newTitle": "Novo serviço",
-    "editTitle": "Editar serviço",
-    "minutes": "{{minutes}} min",
-    "fields": {
-      "name": "Serviço",
-      "duration": "Duração",
-      "price": "Preço"
-    },
-    "empty": "Nenhum serviço cadastrado",
-    "emptyHint": "Cadastre os serviços oferecidos para usá-los nos agendamentos.",
-    "created": "Serviço {{name}} cadastrado.",
-    "updated": "Serviço {{name}} atualizado.",
-    "deleted": "Serviço {{name}} excluído.",
-    "deleteTitle": "Excluir serviço",
-    "deleteMessage": "Tem certeza que deseja excluir {{name}}?",
-    "inUse": "{{name}} possui {{count}} agendamentos e não pode ser excluído."
-  },
-  "calendar": {
-    "title": "Agenda",
-    "subtitle": "Visualize os atendimentos por mês, semana ou dia.",
-    "subtitleFor": "Agenda de {{name}}.",
-    "filterLabel": "Filtrar por profissional",
-    "allProfessionals": "Todos",
-    "hint": "Clique em um horário livre para agendar, arraste para reagendar e puxe a borda para mudar a duração."
-  },
-  "appointments": {
-    "new": "Novo agendamento",
-    "newTitle": "Novo agendamento",
-    "editTitle": "Editar agendamento",
-    "book": "Agendar",
-    "selectProfessional": "Selecione o profissional",
-    "selectClient": "Selecione o cliente",
-    "selectService": "Selecione o serviço",
-    "checkingAvailability": "Verificando disponibilidade…",
-    "slotAvailable": "Horário disponível.",
-    "fields": {
-      "professional": "Profissional",
-      "client": "Cliente",
-      "service": "Serviço",
-      "date": "Data",
-      "start": "Início",
-      "end": "Término",
-      "status": "Situação",
-      "notes": "Observações"
-    },
-    "status": {
-      "scheduled": "Agendado",
-      "completed": "Concluído",
-      "cancelled": "Cancelado"
-    },
-    "created": "Agendamento de {{name}} criado.",
-    "updated": "Agendamento de {{name}} atualizado.",
-    "deleted": "Agendamento excluído.",
-    "deleteTitle": "Excluir agendamento",
-    "deleteMessage": "Tem certeza que deseja excluir este agendamento? Para manter o histórico, prefira marcá-lo como cancelado.",
-    "rescheduled": "Agendamento de {{name}} reagendado."
   }
 }

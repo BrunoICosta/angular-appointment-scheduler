@@ -28,7 +28,7 @@
               {{ 'services.fields.price' | transloco }}
             </th>
             <th scope="col" class="data-table__numeric">
-              {{ 'clients.appointments' | transloco }}
+              {{ 'common.appointments' | transloco }}
             </th>
             <th scope="col">
               <span class="sr-only">{{ 'common.actions' | transloco }}</span>
@@ -47,7 +47,7 @@
               <td [attr.data-label]="'services.fields.duration' | transloco">
                 <span class="badge">
                   <app-icon name="clock" />
-                  {{ 'services.minutes' | transloco: { minutes: service.durationMinutes } }}
+                  {{ 'common.minutes' | transloco: { minutes: service.durationMinutes } }}
                 </span>
               </td>
               <td
@@ -56,10 +56,7 @@
               >
                 {{ service.price | localeCurrency }}
               </td>
-              <td
-                class="data-table__numeric"
-                [attr.data-label]="'clients.appointments' | transloco"
-              >
+              <td class="data-table__numeric" [attr.data-label]="'common.appointments' | transloco">
                 {{ appointmentCount(service) }}
               </td>
               <td class="data-table__actions">

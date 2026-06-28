@@ -1,0 +1,28 @@
+{
+  "title": "Profissionais",
+  "subtitle": "Equipe, especialidades e horários de atendimento.",
+  "new": "Novo profissional",
+  "newTitle": "Novo profissional",
+  "editTitle": "Editar profissional",
+  "specialtyPlaceholder": "Ex.: Cabeleireira, Fisioterapeuta",
+  "customColor": "Cor personalizada",
+  "opensAt": "Início do expediente",
+  "closesAt": "Fim do expediente",
+  "to": "até",
+  "appointmentCount": "{{count}} agendamentos",
+  "fields": {
+    "name": "Nome",
+    "specialty": "Especialidade",
+    "color": "Cor na agenda",
+    "workingHours": "Horário de atendimento"
+  },
+  "empty": "Nenhum profissional cadastrado",
+  "emptyHint": "Cadastre a equipe para liberar a agenda.",
+  "created": "Profissional {{name}} cadastrado.",
+  "updated": "Profissional {{name}} atualizado.",
+  "deleted": "Profissional {{name}} excluído.",
+  "deleteTitle": "Excluir profissional",
+  "deleteMessage": "Tem certeza que deseja excluir {{name}}?",
+  "deleteWithAppointments": "Tem certeza que deseja excluir {{name}}? Os {{count}} agendamentos deste profissional também serão removidos.",
+  "viewCalendar": "Ver agenda"
+}

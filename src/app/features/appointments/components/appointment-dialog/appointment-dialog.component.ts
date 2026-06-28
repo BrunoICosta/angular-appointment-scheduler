@@ -16,7 +16,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { TranslocoPipe } from '@jsverse/transloco';
+import { TranslocoPipe, provideTranslocoScope } from '@jsverse/transloco';
 import { distinctUntilChanged, map } from 'rxjs';
 
 import {
@@ -73,6 +73,8 @@ const DEFAULT_DURATION_MINUTES = 60;
     LocaleCurrencyPipe,
     LocaleDatePipe,
   ],
+  // The dialog is opened from several features, so it brings its own translation scope.
+  providers: [provideTranslocoScope('appointments')],
   templateUrl: './appointment-dialog.component.html',
   styleUrl: './appointment-dialog.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

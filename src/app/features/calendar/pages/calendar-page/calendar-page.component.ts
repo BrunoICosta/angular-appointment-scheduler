@@ -115,7 +115,7 @@ export class CalendarPageComponent {
       start: move.start.toISOString(),
       end: move.end.toISOString(),
     });
-    this.toast.success('appointments.rescheduled', {
+    this.toast.success('calendar.rescheduled', {
       name: this.clients.get(appointment.clientId)?.name ?? '',
     });
   }

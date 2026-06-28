@@ -1,0 +1,20 @@
+{
+  "title": "Visão geral",
+  "openCalendar": "Abrir agenda",
+  "upcoming": "Próximos atendimentos",
+  "seeAll": "Ver agenda",
+  "today": "Hoje",
+  "tomorrow": "Amanhã",
+  "noUpcoming": "Nenhum atendimento agendado",
+  "noUpcomingHint": "Os próximos agendamentos aparecerão aqui.",
+  "teamToday": "Equipe hoje",
+  "appointmentsToday": "{{count}} hoje",
+  "stats": {
+    "today": "Atendimentos hoje",
+    "week": "Nesta semana",
+    "revenue": "Receita prevista na semana",
+    "revenueHint": "Exclui cancelados",
+    "clients": "Clientes cadastrados"
+  },
+  "noProfessionals": "Nenhum profissional cadastrado"
+}

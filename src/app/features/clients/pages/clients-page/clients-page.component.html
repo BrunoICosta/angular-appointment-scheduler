@@ -41,7 +41,7 @@
             <th scope="col">{{ 'clients.fields.email' | transloco }}</th>
             <th scope="col">{{ 'clients.fields.cpf' | transloco }}</th>
             <th scope="col" class="data-table__numeric">
-              {{ 'clients.appointments' | transloco }}
+              {{ 'common.appointments' | transloco }}
             </th>
             <th scope="col">
               <span class="sr-only">{{ 'common.actions' | transloco }}</span>
@@ -71,10 +71,7 @@
               <td class="data-table__nowrap" [attr.data-label]="'clients.fields.cpf' | transloco">
                 {{ client.cpf }}
               </td>
-              <td
-                class="data-table__numeric"
-                [attr.data-label]="'clients.appointments' | transloco"
-              >
+              <td class="data-table__numeric" [attr.data-label]="'common.appointments' | transloco">
                 {{ appointmentCount(client) }}
               </td>
               <td class="data-table__actions">

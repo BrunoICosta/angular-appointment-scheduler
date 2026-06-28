@@ -16,7 +16,11 @@
     "actions": "Actions",
     "optional": "optional",
     "saved": "Changes saved.",
-    "deleted": "Record deleted."
+    "deleted": "Record deleted.",
+    "appointments": "Appointments",
+    "minutes": "{{minutes}} min",
+    "dayOff": "Off",
+    "newAppointment": "New appointment"
   },
   "nav": {
     "dashboard": "Home",
@@ -34,25 +38,6 @@
     "resetDemoMessage": "All professionals, clients, services and appointments will go back to the sample data. Your changes will be lost.",
     "resetDemoConfirm": "Restore",
     "resetDemoDone": "Demo data restored."
-  },
-  "dashboard": {
-    "title": "Overview",
-    "openCalendar": "Open calendar",
-    "upcoming": "Upcoming appointments",
-    "seeAll": "See calendar",
-    "today": "Today",
-    "tomorrow": "Tomorrow",
-    "noUpcoming": "No upcoming appointments",
-    "noUpcomingHint": "Your next appointments will show up here.",
-    "teamToday": "Team today",
-    "appointmentsToday": "{{count}} today",
-    "stats": {
-      "today": "Appointments today",
-      "week": "This week",
-      "revenue": "Expected revenue this week",
-      "revenueHint": "Excludes cancelled",
-      "clients": "Registered clients"
-    }
   },
   "validation": {
     "required": "This field is required.",
@@ -72,122 +57,5 @@
     "dayOff": "{{name}} does not work on this weekday.",
     "outsideWorkingHours": "Outside {{name}}'s working hours ({{start}} to {{end}}).",
     "overlap": "Conflicts with another appointment of this professional ({{start}} to {{end}})."
-  },
-  "clients": {
-    "title": "Clients",
-    "subtitle": "{{count}} registered clients",
-    "new": "New client",
-    "newTitle": "New client",
-    "editTitle": "Edit client",
-    "searchLabel": "Search clients",
-    "searchPlaceholder": "Search by name, email, phone or CPF",
-    "appointments": "Appointments",
-    "fields": {
-      "name": "Full name",
-      "phone": "Phone",
-      "email": "Email",
-      "cpf": "CPF",
-      "notes": "Notes"
-    },
-    "empty": "No clients yet",
-    "emptyHint": "Add your first client to start booking.",
-    "noResults": "No clients found",
-    "noResultsHint": "Try a different search term.",
-    "created": "Client {{name}} added.",
-    "updated": "Client {{name}} updated.",
-    "deleted": "Client {{name}} deleted.",
-    "deleteTitle": "Delete client",
-    "deleteMessage": "Are you sure you want to delete {{name}}?",
-    "deleteWithAppointments": "Are you sure you want to delete {{name}}? Their {{count}} appointments will also be removed."
-  },
-  "professionals": {
-    "title": "Professionals",
-    "subtitle": "Team, specialties and working hours.",
-    "new": "New professional",
-    "newTitle": "New professional",
-    "editTitle": "Edit professional",
-    "specialtyPlaceholder": "E.g. Hairdresser, Physiotherapist",
-    "customColor": "Custom color",
-    "opensAt": "Opening time",
-    "closesAt": "Closing time",
-    "to": "to",
-    "dayOff": "Off",
-    "appointmentCount": "{{count}} appointments",
-    "fields": {
-      "name": "Name",
-      "specialty": "Specialty",
-      "color": "Calendar color",
-      "workingHours": "Working hours"
-    },
-    "empty": "No professionals yet",
-    "emptyHint": "Add your team to open the schedule.",
-    "created": "Professional {{name}} added.",
-    "updated": "Professional {{name}} updated.",
-    "deleted": "Professional {{name}} deleted.",
-    "deleteTitle": "Delete professional",
-    "deleteMessage": "Are you sure you want to delete {{name}}?",
-    "deleteWithAppointments": "Are you sure you want to delete {{name}}? Their {{count}} appointments will also be removed.",
-    "viewCalendar": "View calendar"
-  },
-  "services": {
-    "title": "Services",
-    "subtitle": "Service catalog with duration and price.",
-    "new": "New service",
-    "newTitle": "New service",
-    "editTitle": "Edit service",
-    "minutes": "{{minutes}} min",
-    "fields": {
-      "name": "Service",
-      "duration": "Duration",
-      "price": "Price"
-    },
-    "empty": "No services yet",
-    "emptyHint": "Add the services you offer to use them in appointments.",
-    "created": "Service {{name}} added.",
-    "updated": "Service {{name}} updated.",
-    "deleted": "Service {{name}} deleted.",
-    "deleteTitle": "Delete service",
-    "deleteMessage": "Are you sure you want to delete {{name}}?",
-    "inUse": "{{name}} has {{count}} appointments and cannot be deleted."
-  },
-  "calendar": {
-    "title": "Calendar",
-    "subtitle": "See appointments by month, week or day.",
-    "subtitleFor": "{{name}}'s schedule.",
-    "filterLabel": "Filter by professional",
-    "allProfessionals": "Everyone",
-    "hint": "Click a free slot to book, drag to reschedule and pull the edge to change the duration."
-  },
-  "appointments": {
-    "new": "New appointment",
-    "newTitle": "New appointment",
-    "editTitle": "Edit appointment",
-    "book": "Book",
-    "selectProfessional": "Select a professional",
-    "selectClient": "Select a client",
-    "selectService": "Select a service",
-    "checkingAvailability": "Checking availability…",
-    "slotAvailable": "This time is available.",
-    "fields": {
-      "professional": "Professional",
-      "client": "Client",
-      "service": "Service",
-      "date": "Date",
-      "start": "Start",
-      "end": "End",
-      "status": "Status",
-      "notes": "Notes"
-    },
-    "status": {
-      "scheduled": "Scheduled",
-      "completed": "Completed",
-      "cancelled": "Cancelled"
-    },
-    "created": "Appointment for {{name}} created.",
-    "updated": "Appointment for {{name}} updated.",
-    "deleted": "Appointment deleted.",
-    "deleteTitle": "Delete appointment",
-    "deleteMessage": "Are you sure you want to delete this appointment? To keep the history, consider marking it as cancelled instead.",
-    "rescheduled": "Appointment for {{name}} rescheduled."
   }
 }

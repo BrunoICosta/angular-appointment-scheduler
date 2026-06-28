@@ -11,7 +11,7 @@
       </a>
       <button type="button" class="btn btn--primary" (click)="newAppointment()">
         <app-icon name="calendar-plus" />
-        {{ 'appointments.new' | transloco }}
+        {{ 'common.newAppointment' | transloco }}
       </button>
     </div>
   </header>
@@ -104,7 +104,7 @@
           <p>{{ 'dashboard.noUpcomingHint' | transloco }}</p>
           <button type="button" class="btn btn--primary" (click)="newAppointment()">
             <app-icon name="calendar-plus" />
-            {{ 'appointments.new' | transloco }}
+            {{ 'common.newAppointment' | transloco }}
           </button>
         </div>
       }
@@ -131,11 +131,11 @@
                 {{ 'dashboard.appointmentsToday' | transloco: { count: row.count } }}
               </span>
             } @else {
-              <span class="badge">{{ 'professionals.dayOff' | transloco }}</span>
+              <span class="badge">{{ 'common.dayOff' | transloco }}</span>
             }
           </li>
         } @empty {
-          <li class="team__row">{{ 'professionals.empty' | transloco }}</li>
+          <li class="team__row">{{ 'dashboard.noProfessionals' | transloco }}</li>
         }
       </ul>
     </section>

@@ -1,0 +1,28 @@
+{
+  "title": "Professionals",
+  "subtitle": "Team, specialties and working hours.",
+  "new": "New professional",
+  "newTitle": "New professional",
+  "editTitle": "Edit professional",
+  "specialtyPlaceholder": "E.g. Hairdresser, Physiotherapist",
+  "customColor": "Custom color",
+  "opensAt": "Opening time",
+  "closesAt": "Closing time",
+  "to": "to",
+  "appointmentCount": "{{count}} appointments",
+  "fields": {
+    "name": "Name",
+    "specialty": "Specialty",
+    "color": "Calendar color",
+    "workingHours": "Working hours"
+  },
+  "empty": "No professionals yet",
+  "emptyHint": "Add your team to open the schedule.",
+  "created": "Professional {{name}} added.",
+  "updated": "Professional {{name}} updated.",
+  "deleted": "Professional {{name}} deleted.",
+  "deleteTitle": "Delete professional",
+  "deleteMessage": "Are you sure you want to delete {{name}}?",
+  "deleteWithAppointments": "Are you sure you want to delete {{name}}? Their {{count}} appointments will also be removed.",
+  "viewCalendar": "View calendar"
+}

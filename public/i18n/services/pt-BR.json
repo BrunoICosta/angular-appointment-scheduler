@@ -1,0 +1,20 @@
+{
+  "title": "Serviços",
+  "subtitle": "Catálogo de serviços com duração e preço.",
+  "new": "Novo serviço",
+  "newTitle": "Novo serviço",
+  "editTitle": "Editar serviço",
+  "fields": {
+    "name": "Serviço",
+    "duration": "Duração",
+    "price": "Preço"
+  },
+  "empty": "Nenhum serviço cadastrado",
+  "emptyHint": "Cadastre os serviços oferecidos para usá-los nos agendamentos.",
+  "created": "Serviço {{name}} cadastrado.",
+  "updated": "Serviço {{name}} atualizado.",
+  "deleted": "Serviço {{name}} excluído.",
+  "deleteTitle": "Excluir serviço",
+  "deleteMessage": "Tem certeza que deseja excluir {{name}}?",
+  "inUse": "{{name}} possui {{count}} agendamentos e não pode ser excluído."
+}

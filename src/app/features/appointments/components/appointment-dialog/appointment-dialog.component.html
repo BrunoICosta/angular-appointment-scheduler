@@ -59,7 +59,7 @@
         @for (service of services(); track service.id) {
           <option [value]="service.id">
             {{ service.name }} ·
-            {{ 'services.minutes' | transloco: { minutes: service.durationMinutes } }} ·
+            {{ 'common.minutes' | transloco: { minutes: service.durationMinutes } }} ·
             {{ service.price | localeCurrency }}
           </option>
         }

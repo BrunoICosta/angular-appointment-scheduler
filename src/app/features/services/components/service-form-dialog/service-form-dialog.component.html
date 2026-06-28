@@ -27,7 +27,7 @@
         aria-describedby="service-duration-error"
       >
         @for (minutes of durations; track minutes) {
-          <option [ngValue]="minutes">{{ 'services.minutes' | transloco: { minutes } }}</option>
+          <option [ngValue]="minutes">{{ 'common.minutes' | transloco: { minutes } }}</option>
         }
       </select>
       <app-field-error [control]="form.controls.durationMinutes" id="service-duration-error" />

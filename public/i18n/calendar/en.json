@@ -1,0 +1,9 @@
+{
+  "title": "Calendar",
+  "subtitle": "See appointments by month, week or day.",
+  "subtitleFor": "{{name}}'s schedule.",
+  "filterLabel": "Filter by professional",
+  "allProfessionals": "Everyone",
+  "hint": "Click a free slot to book, drag to reschedule and pull the edge to change the duration.",
+  "rescheduled": "Appointment for {{name}} rescheduled."
+}

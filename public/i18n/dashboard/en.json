@@ -1,0 +1,20 @@
+{
+  "title": "Overview",
+  "openCalendar": "Open calendar",
+  "upcoming": "Upcoming appointments",
+  "seeAll": "See calendar",
+  "today": "Today",
+  "tomorrow": "Tomorrow",
+  "noUpcoming": "No upcoming appointments",
+  "noUpcomingHint": "Your next appointments will show up here.",
+  "teamToday": "Team today",
+  "appointmentsToday": "{{count}} today",
+  "stats": {
+    "today": "Appointments today",
+    "week": "This week",
+    "revenue": "Expected revenue this week",
+    "revenueHint": "Excludes cancelled",
+    "clients": "Registered clients"
+  },
+  "noProfessionals": "No professionals yet"
+}
