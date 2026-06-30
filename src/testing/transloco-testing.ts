@@ -42,7 +42,12 @@ export function translocoTesting(options: TranslocoTestingOptions = {}) {
   registerAppLocales();
   return TranslocoTestingModule.forRoot({
     langs: TEST_TRANSLATIONS,
-    translocoConfig: { availableLangs: ['pt-BR', 'en'], defaultLang: 'pt-BR' },
+    translocoConfig: {
+      availableLangs: ['pt-BR', 'en'],
+      defaultLang: 'pt-BR',
+      // Same as the app, so templates react to runtime language switches.
+      reRenderOnLangChange: true,
+    },
     preloadLangs: true,
     ...options,
   });

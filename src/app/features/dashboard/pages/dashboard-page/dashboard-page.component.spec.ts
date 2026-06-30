@@ -3,6 +3,8 @@ import { provideRouter } from '@angular/router';
 
 import { MemoryStorage } from '../../../../../testing/memory-storage';
 import { translocoTesting } from '../../../../../testing/transloco-testing';
+import { AppLanguage } from '../../../../core/i18n/languages';
+import { LanguageService } from '../../../../core/i18n/language.service';
 import { Appointment, AppointmentStatus } from '../../../../core/models';
 import { AppointmentDialogService } from '../../../../core/scheduling/appointment-dialog.service';
 import { BROWSER_STORAGE, STORAGE_PREFIX } from '../../../../core/storage/storage.service';
@@ -28,9 +30,10 @@ const appointment = (
 });
 
 describe('DashboardPageComponent', () => {
-  function render(appointments: Appointment[]) {
+  function render(appointments: Appointment[], language: AppLanguage = 'pt-BR') {
     const storage = new MemoryStorage();
     storage.setItem(`${STORAGE_PREFIX}:appointments`, JSON.stringify(appointments));
+    storage.setItem(`${STORAGE_PREFIX}:language`, JSON.stringify(language));
     TestBed.configureTestingModule({
       imports: [DashboardPageComponent, translocoTesting()],
       providers: [
@@ -39,6 +42,8 @@ describe('DashboardPageComponent', () => {
         { provide: CLOCK, useValue: () => NOW },
       ],
     });
+    // Same as the app initializer: activates the saved language in Transloco.
+    TestBed.inject(LanguageService).init().subscribe();
     const fixture = TestBed.createComponent(DashboardPageComponent);
     fixture.detectChanges();
     return fixture.nativeElement as HTMLElement;
@@ -93,5 +98,26 @@ describe('DashboardPageComponent', () => {
         appointment: jasmine.objectContaining({ id: 'today' }),
       }),
     );
+  });
+
+  it('renders in English with en-US date and currency formatting', () => {
+    const element = render(
+      [
+        appointment('today', 'cli-mariana', new Date(2026, 5, 15, 14, 0)),
+        appointment('tomorrow', 'cli-pedro', new Date(2026, 5, 16, 8, 0)),
+      ],
+      'en',
+    );
+
+    expect(element.querySelector('h1')?.textContent).toContain('Overview');
+    expect(element.querySelector('#upcoming-title')?.textContent).toContain(
+      'Upcoming appointments',
+    );
+    expect(element.textContent).toContain('Monday, June 15, 2026');
+    const days = [...element.querySelectorAll('.upcoming__day')].map((h) => h.textContent?.trim());
+    expect(days).toEqual(['Today', 'Tomorrow']);
+    expect(element.querySelector('.upcoming__time strong')?.textContent?.trim()).toBe('2:00 PM');
+    const revenue = element.querySelectorAll('.stat__value')[2]?.textContent?.trim();
+    expect(revenue).toBe('R$300.00');
   });
 });

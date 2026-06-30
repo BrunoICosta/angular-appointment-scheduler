@@ -4,27 +4,25 @@ import { TranslocoService } from '@jsverse/transloco';
 import { Observable, map } from 'rxjs';
 
 import { StorageService } from '../storage/storage.service';
-import {
-  AppLanguage,
-  DEFAULT_LANGUAGE,
-  LANGUAGES,
-  LanguageOption,
-  isAppLanguage,
-} from './languages';
+import { BROWSER_LANGUAGES } from './browser-languages.token';
+import { AppLanguage, LANGUAGES, LanguageOption, detectLanguage } from './languages';
 
 const STORAGE_KEY = 'language';
 
 /**
  * Single source of truth for the active language. Keeps Transloco, the `<html lang>`
- * attribute, the formatting locale and the persisted preference in sync.
+ * attribute, the formatting locale and the persisted preference (localStorage) in sync.
  */
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
   private readonly transloco = inject(TranslocoService);
   private readonly storage = inject(StorageService);
   private readonly document = inject(DOCUMENT);
+  private readonly browserLanguages = inject(BROWSER_LANGUAGES);
 
-  private readonly active = signal<AppLanguage>(this.resolveInitialLanguage());
+  private readonly active = signal<AppLanguage>(
+    detectLanguage(this.storage.read<string>(STORAGE_KEY), this.browserLanguages),
+  );
 
   readonly languages = LANGUAGES;
   readonly current = this.active.asReadonly();
@@ -53,14 +51,5 @@ export class LanguageService {
   private apply(language: AppLanguage): void {
     this.transloco.setActiveLang(language);
     this.document.documentElement.lang = language;
-  }
-
-  private resolveInitialLanguage(): AppLanguage {
-    const stored = this.storage.read<string>(STORAGE_KEY);
-    if (isAppLanguage(stored)) {
-      return stored;
-    }
-    const browser = this.document.defaultView?.navigator.language ?? '';
-    return browser.toLowerCase().startsWith('en') ? 'en' : DEFAULT_LANGUAGE;
   }
 }
