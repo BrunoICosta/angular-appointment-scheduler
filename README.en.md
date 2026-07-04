@@ -19,7 +19,7 @@ A booking app for clinics and salons built with **Angular 20** and **FullCalenda
 ## Internationalization
 
 - Initial language: saved choice (`localStorage`) > browser language (`pt*` → pt-BR, anything else → en) > pt-BR.
-- The PT | EN switcher in the header updates Transloco, `<html lang>`, the formatting locale, the calendar locale and the page title, and saves the choice.
+- The flag switcher in the header (Brazil = pt-BR, USA = en; inline SVG flags, named buttons with `aria-pressed`) updates Transloco, `<html lang>`, the formatting locale, the calendar locale and the page title, and saves the choice.
 - Global strings live in `public/i18n/{pt-BR,en}.json`; each feature has a **lazy Transloco scope** in `public/i18n/<feature>/` registered with `provideTranslocoScope()` on its route, so translations download together with the feature chunk.
 - User-entered content (service names, specialties, notes) is shown as typed.
 - To add a language: add the JSON files, list it in `LANGUAGES` (`core/i18n/languages.ts`) and register its Angular locale data in `core/i18n/register-locales.ts`.
@@ -40,7 +40,7 @@ Angular 20.3 (standalone, Signals, control flow, `@defer`), TypeScript 5.9, Full
 ```bash
 npm install
 npm start            # http://localhost:4200
-npm run test:ci      # 114 unit tests in headless Chrome
+npm run test:ci      # 116 unit tests in headless Chrome
 npm run lint
 npm run build
 ```

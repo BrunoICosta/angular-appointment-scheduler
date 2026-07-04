@@ -106,7 +106,7 @@ public/i18n/             traduções globais + um escopo lazy por feature (<feat
 O app é traduzido em tempo de execução com **Transloco** (`@jsverse/transloco`) — pt-BR é o idioma padrão e inglês o segundo.
 
 - **Idioma inicial:** escolha salva no `localStorage` (`appointment-scheduler:language`) > idioma do navegador (`pt*` → pt-BR, qualquer outro → en) > pt-BR. A regra é a função pura `detectLanguage` (`core/i18n/languages.ts`), e os idiomas do navegador chegam pelo token `BROWSER_LANGUAGES`, o que permite testar a detecção.
-- **Troca de idioma:** o seletor PT | EN no cabeçalho (grupo com `aria-label`, `aria-pressed` no idioma ativo e o nome nativo de cada idioma) chama `LanguageService.use()`, que ativa o idioma no Transloco, atualiza `<html lang>`, o locale de formatação e o título da aba, e salva a escolha.
+- **Troca de idioma:** o seletor de bandeiras no cabeçalho (Brasil = pt-BR, EUA = en; SVG inline em `FlagComponent`, decorativo, em vez de emoji, que o Windows mostra como letras) é um grupo rotulado "Idioma"/"Language" com um botão por idioma — nome acessível, `title` e `lang` no próprio idioma, `aria-pressed` e anel de destaque no ativo. Ele chama `LanguageService.use()`, que ativa o idioma no Transloco, atualiza `<html lang>`, o locale de formatação e o título da aba, e salva a escolha.
 - **Arquivos:** `public/i18n/{pt-BR,en}.json` guardam só o que é global (shell, navegação, ações comuns, mensagens de validação). Cada feature tem um **escopo lazy** em `public/i18n/<feature>/{pt-BR,en}.json` (`dashboard`, `calendar`, `clients`, `professionals`, `services`, `appointments`), registrado com `provideTranslocoScope()` nos `providers` da rota da feature — o JSON é baixado junto com o chunk da feature. O diálogo de agendamento, aberto de várias telas, registra o escopo `appointments` no próprio componente.
 - **Formatação:** `registerLocaleData` registra `pt` (o `en-US` já vem no Angular). Os pipes `localeDate` e `localeCurrency` usam o locale ativo — a moeda continua BRL, só a formatação muda. O FullCalendar recebe `pt-br`/`en`.
 - **Fora do escopo da tradução:** os dados cadastrados (nomes de serviços, especialidades, observações) são conteúdo do usuário e aparecem como foram digitados, inclusive os dados de demonstração.
@@ -134,7 +134,7 @@ npm run build:pages    # build com base-href do GitHub Pages
 
 ## Testes
 
-114 testes unitários (Karma/Jasmine) cobrindo:
+116 testes unitários (Karma/Jasmine) cobrindo:
 
 - validadores de CPF, telefone e CPF único, máscaras e utilitários de data;
 - regras de agenda (sobreposição, expediente, passado, ordem de prioridade);

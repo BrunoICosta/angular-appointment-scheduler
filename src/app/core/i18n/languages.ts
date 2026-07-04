@@ -4,14 +4,13 @@ export interface LanguageOption {
   readonly code: AppLanguage;
   /** Angular locale id used for dates, numbers and currency. */
   readonly locale: string;
-  /** Native name, shown as-is regardless of the active language. */
+  /** Native name, used as the switcher button name regardless of the active language. */
   readonly label: string;
-  readonly short: string;
 }
 
 export const LANGUAGES: readonly LanguageOption[] = [
-  { code: 'pt-BR', locale: 'pt-BR', label: 'Português (Brasil)', short: 'PT' },
-  { code: 'en', locale: 'en-US', label: 'English', short: 'EN' },
+  { code: 'pt-BR', locale: 'pt-BR', label: 'Português (Brasil)' },
+  { code: 'en', locale: 'en-US', label: 'English' },
 ];
 
 export const DEFAULT_LANGUAGE: AppLanguage = 'pt-BR';
