@@ -4,7 +4,7 @@
 
 Aplicação de agendamentos para clínicas e salões feita em **Angular 20** com **FullCalendar**. Permite cadastrar profissionais (com horário de atendimento por dia da semana), clientes e serviços, e organizar os atendimentos em uma agenda mensal, semanal ou diária com **arrastar para reagendar** e **redimensionar para mudar a duração**. Todas as regras de agenda (sem sobreposição, dentro do expediente, nunca no passado) são **validadores customizados de Reactive Forms** — incluindo um validador assíncrono e validadores cross-field — e as mesmas regras protegem o drag & drop do calendário. A interface é bilíngue (pt-BR/en) em tempo de execução com **Transloco**, com datas e moeda formatadas conforme o idioma. Os dados ficam no `localStorage`, com dados de demonstração gerados em torno da data atual.
 
-**Demo:** https://brunoicosta.github.io/angular-appointment-scheduler/
+**Demo:** https://portfolio.brunoisaac.dev/angular-appointment-scheduler/
 
 ![Agenda semanal de um profissional](docs/screenshot.png)
 
@@ -129,8 +129,12 @@ npm test               # Karma em modo watch
 npm run test:ci        # execução única no ChromeHeadless
 npm run lint
 npm run build          # produção em dist/
-npm run build:pages    # build com base-href do GitHub Pages
+npm run build:cf       # build de produção com base-href /angular-appointment-scheduler/
 ```
+
+## Deploy
+
+Publicado na Cloudflare (Workers static assets) em https://portfolio.brunoisaac.dev/angular-appointment-scheduler/ pelo pipeline do repositório [portfolio](https://github.com/BrunoICosta/portfolio), que roda `npm run build:cf` e publica `dist/angular-appointment-scheduler/browser`. O fallback de SPA (rotas profundas como `/calendar`) é feito pelo Worker do portfólio. Este repositório mantém só o workflow de CI (lint, testes e build).
 
 ## Testes
 
