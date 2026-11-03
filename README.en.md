@@ -1,8 +1,8 @@
-# Agendaí — scheduling for clinics and salons
+# Agendaí | scheduling for clinics and salons
 
 [🇧🇷 Português](README.md) · 🇺🇸 English
 
-A booking app for clinics and salons built with **Angular 20** and **FullCalendar**. You register professionals (with working hours per weekday), clients and services, then manage appointments on a month/week/day calendar with **drag to reschedule** and **resize to change the duration**. Every scheduling rule (no overlaps, inside working hours, never in the past) is a **custom Reactive Forms validator** — including an async validator and cross-field validators — and the same rules guard the calendar's drag & drop. The UI switches between Brazilian Portuguese and English at runtime with **Transloco**, with dates and currency formatted for the active language. Data lives in `localStorage`, with demo data generated around today's date.
+A booking app for clinics and salons built with **Angular 20** and **FullCalendar**. You register professionals (with working hours per weekday), clients and services, then manage appointments on a month/week/day calendar with **drag to reschedule** and **resize to change the duration**. Every scheduling rule (no overlaps, inside working hours, never in the past) is a **custom Reactive Forms validator**, including an async validator and cross-field validators, and the same rules guard the calendar's drag & drop. The UI switches between Brazilian Portuguese and English at runtime with **Transloco**, with dates and currency formatted for the active language. Data lives in `localStorage`, with demo data generated around today's date.
 
 **Demo:** https://portfolio.brunoisaac.dev/angular-appointment-scheduler/
 
@@ -51,4 +51,4 @@ Published on Cloudflare (Workers static assets) at https://portfolio.brunoisaac.
 
 ## Author
 
-**Bruno Vinicius Isaac Costa** — https://github.com/BrunoICosta · [MIT License](LICENSE)
+**Bruno Vinicius Isaac Costa** · https://github.com/BrunoICosta · [MIT License](LICENSE)

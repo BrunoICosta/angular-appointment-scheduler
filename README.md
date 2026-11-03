@@ -1,8 +1,8 @@
-# Agendaí — agenda para clínicas e salões
+# Agendaí | agenda para clínicas e salões
 
 🇧🇷 Português · [🇺🇸 English](README.en.md)
 
-Aplicação de agendamentos para clínicas e salões feita em **Angular 20** com **FullCalendar**. Permite cadastrar profissionais (com horário de atendimento por dia da semana), clientes e serviços, e organizar os atendimentos em uma agenda mensal, semanal ou diária com **arrastar para reagendar** e **redimensionar para mudar a duração**. Todas as regras de agenda (sem sobreposição, dentro do expediente, nunca no passado) são **validadores customizados de Reactive Forms** — incluindo um validador assíncrono e validadores cross-field — e as mesmas regras protegem o drag & drop do calendário. A interface é bilíngue (pt-BR/en) em tempo de execução com **Transloco**, com datas e moeda formatadas conforme o idioma. Os dados ficam no `localStorage`, com dados de demonstração gerados em torno da data atual.
+Aplicação de agendamentos para clínicas e salões feita em **Angular 20** com **FullCalendar**. Permite cadastrar profissionais (com horário de atendimento por dia da semana), clientes e serviços, e organizar os atendimentos em uma agenda mensal, semanal ou diária com **arrastar para reagendar** e **redimensionar para mudar a duração**. Todas as regras de agenda (sem sobreposição, dentro do expediente, nunca no passado) são **validadores customizados de Reactive Forms**, incluindo um validador assíncrono e validadores cross-field, e as mesmas regras protegem o drag & drop do calendário. A interface é bilíngue (pt-BR/en) em tempo de execução com **Transloco**, com datas e moeda formatadas conforme o idioma. Os dados ficam no `localStorage`, com dados de demonstração gerados em torno da data atual.
 
 **Demo:** https://portfolio.brunoisaac.dev/angular-appointment-scheduler/
 
@@ -31,23 +31,23 @@ Aplicação de agendamentos para clínicas e salões feita em **Angular 20** com
 - **Profissionais**: CRUD com especialidade, cor na agenda e editor de horário semanal (validação por dia e "pelo menos um dia de atendimento").
 - **Serviços**: catálogo com duração e preço; serviços em uso não podem ser excluídos.
 - **Início**: próximos atendimentos agrupados por dia, totais do dia e da semana, receita prevista e a equipe do dia.
-- **i18n**: alternância pt-BR/en sem recarregar a página — textos, rótulos acessíveis, mensagens de validação, toasts, título da aba, `<html lang>`, calendário, datas e moeda (`R$ 120,00` × `R$120.00`). Detalhes em [Internacionalização](#internacionalização).
+- **i18n**: alternância pt-BR/en sem recarregar a página, textos, rótulos acessíveis, mensagens de validação, toasts, título da aba, `<html lang>`, calendário, datas e moeda (`R$ 120,00` × `R$120.00`). Detalhes em [Internacionalização](#internacionalização).
 - Tema claro/escuro (respeita o sistema), layout responsivo (barra lateral no desktop, barra inferior no celular), estados vazios, toasts e diálogos acessíveis (`<dialog>` nativo, foco gerenciado, `aria-live`).
 - Botão para restaurar os dados de demonstração.
 
 ## Stack
 
-| Tecnologia | Versão |
-| --- | --- |
-| Angular (standalone, Signals, control flow, `@defer`) | 20.3 |
-| TypeScript | 5.9 |
-| FullCalendar (`@fullcalendar/angular`, daygrid, timegrid, interaction) | 6.1.20 |
-| Transloco (`@jsverse/transloco`) | 8.3 |
-| RxJS | 7.8 |
-| Karma + Jasmine (ChromeHeadless) | 6.4 / 5.9 |
-| ESLint + angular-eslint + Prettier | 9.39 / 20.7 / 3.8 |
+| Tecnologia                                                             | Versão            |
+| ---------------------------------------------------------------------- | ----------------- |
+| Angular (standalone, Signals, control flow, `@defer`)                  | 20.3              |
+| TypeScript                                                             | 5.9               |
+| FullCalendar (`@fullcalendar/angular`, daygrid, timegrid, interaction) | 6.1.20            |
+| Transloco (`@jsverse/transloco`)                                       | 8.3               |
+| RxJS                                                                   | 7.8               |
+| Karma + Jasmine (ChromeHeadless)                                       | 6.4 / 5.9         |
+| ESLint + angular-eslint + Prettier                                     | 9.39 / 20.7 / 3.8 |
 
-SCSS próprio com design tokens em CSS custom properties — sem biblioteca de componentes.
+SCSS próprio com design tokens em CSS custom properties, sem biblioteca de componentes.
 
 ## Arquitetura e decisões
 
@@ -80,22 +80,23 @@ public/i18n/             traduções globais + um escopo lazy por feature (<feat
     services/            services.routes.ts, pages/, components/
 ```
 
-- **Lazy loading em todas as features.** `app.routes.ts` só conhece o shell; cada feature tem seu `*.routes.ts` carregado via `loadChildren`, e cada página via `loadComponent`. O FullCalendar (~270 kB) fica num chunk próprio graças ao `@defer` no wrapper `SchedulerCalendarComponent`, e o diálogo de agendamento — aberto do calendário e do início — também é `@defer` (só é baixado na primeira vez em que é aberto). Saída do `ng build`:
+- **Lazy loading em todas as features.** `app.routes.ts` só conhece o shell; cada feature tem seu `*.routes.ts` carregado via `loadChildren`, e cada página via `loadComponent`. O FullCalendar (~270 kB) fica num chunk próprio graças ao `@defer` no wrapper `SchedulerCalendarComponent`, e o diálogo de agendamento, aberto do calendário e do início, também é `@defer` (só é baixado na primeira vez em que é aberto). Saída do `ng build`:
 
-  | Chunk lazy | Tamanho bruto | Transferência estimada |
-  | --- | --- | --- |
-  | `scheduler-calendar-component` (FullCalendar) | 270 kB | 67 kB |
-  | `professionals-page-component` | 15,5 kB | 4,5 kB |
-  | `appointment-dialog-component` | 14,5 kB | 4,3 kB |
-  | `dashboard-page-component` | 12,2 kB | 3,7 kB |
-  | `clients-page-component` | 12,1 kB | 3,8 kB |
-  | `services-page-component` | 8,3 kB | 2,7 kB |
-  | `calendar-page-component` | 7,8 kB | 2,8 kB |
-  | `*-routes` (um por feature) | < 0,2 kB | — |
+  | Chunk lazy                                    | Tamanho bruto | Transferência estimada |
+  | --------------------------------------------- | ------------- | ---------------------- |
+  | `scheduler-calendar-component` (FullCalendar) | 270 kB        | 67 kB                  |
+  | `professionals-page-component`                | 15,5 kB       | 4,5 kB                 |
+  | `appointment-dialog-component`                | 14,5 kB       | 4,3 kB                 |
+  | `dashboard-page-component`                    | 12,2 kB       | 3,7 kB                 |
+  | `clients-page-component`                      | 12,1 kB       | 3,8 kB                 |
+  | `services-page-component`                     | 8,3 kB        | 2,7 kB                 |
+  | `calendar-page-component`                     | 7,8 kB        | 2,8 kB                 |
+  | `*-routes` (um por feature)                   | < 0,2 kB      | ,                      |
 
   Bundle inicial: ~408 kB brutos / ~119 kB transferidos (Angular, router, forms, Transloco e o shell).
+
 - **Regras de agenda puras** (`core/scheduling/scheduling.rules.ts`): `findConflicts`, `checkWorkingHours`, `isInPast` e `validateSlot` não dependem de Angular. Os validadores do formulário e os handlers de drag/resize do calendário usam as mesmas funções, então as duas portas de entrada aplicam exatamente as mesmas regras.
-- **Validador assíncrono "de verdade".** `AvailabilityService` tem a forma de uma chamada HTTP (retorna `Observable` com latência simulada). O validador faz debounce com `timer`, e o Angular cancela a execução anterior quando o valor muda — trocar por uma API real não muda nenhum consumidor.
+- **Validador assíncrono "de verdade".** `AvailabilityService` tem a forma de uma chamada HTTP (retorna `Observable` com latência simulada). O validador faz debounce com `timer`, e o Angular cancela a execução anterior quando o valor muda, trocar por uma API real não muda nenhum consumidor.
 - **Signals para estado.** Cada coleção é um `EntityStore<T>` com `signal` + `computed` (`all`, `byId`, `sorted`) persistido no `localStorage` a cada mutação; leitura corrompida volta para o seed e falha de escrita não derruba a aplicação. Componentes são todos `OnPush`; o diálogo espelha status/erros do formulário em signals (`form.events`) para refletir o estado `PENDING` da validação assíncrona.
 - **i18n em tempo de execução com Transloco** em vez do i18n nativo do Angular (que gera um build por idioma). Datas e moeda usam `formatDate`/`formatCurrency` com o locale ativo por meio de pipes próprios; o FullCalendar recebe o locale correspondente; o título da aba é traduzido por uma `TitleStrategy`.
 - **Tempo injetável.** `CLOCK` (`InjectionToken`) substitui `new Date()`, o que deixa validadores, seed e dashboard determinísticos nos testes.
@@ -103,12 +104,12 @@ public/i18n/             traduções globais + um escopo lazy por feature (<feat
 
 ## Internacionalização
 
-O app é traduzido em tempo de execução com **Transloco** (`@jsverse/transloco`) — pt-BR é o idioma padrão e inglês o segundo.
+O app é traduzido em tempo de execução com **Transloco** (`@jsverse/transloco`), pt-BR é o idioma padrão e inglês o segundo.
 
 - **Idioma inicial:** escolha salva no `localStorage` (`appointment-scheduler:language`) > idioma do navegador (`pt*` → pt-BR, qualquer outro → en) > pt-BR. A regra é a função pura `detectLanguage` (`core/i18n/languages.ts`), e os idiomas do navegador chegam pelo token `BROWSER_LANGUAGES`, o que permite testar a detecção.
-- **Troca de idioma:** o seletor de bandeiras no cabeçalho (Brasil = pt-BR, EUA = en; SVG inline em `FlagComponent`, decorativo, em vez de emoji, que o Windows mostra como letras) é um grupo rotulado "Idioma"/"Language" com um botão por idioma — nome acessível, `title` e `lang` no próprio idioma, `aria-pressed` e anel de destaque no ativo. Ele chama `LanguageService.use()`, que ativa o idioma no Transloco, atualiza `<html lang>`, o locale de formatação e o título da aba, e salva a escolha.
-- **Arquivos:** `public/i18n/{pt-BR,en}.json` guardam só o que é global (shell, navegação, ações comuns, mensagens de validação). Cada feature tem um **escopo lazy** em `public/i18n/<feature>/{pt-BR,en}.json` (`dashboard`, `calendar`, `clients`, `professionals`, `services`, `appointments`), registrado com `provideTranslocoScope()` nos `providers` da rota da feature — o JSON é baixado junto com o chunk da feature. O diálogo de agendamento, aberto de várias telas, registra o escopo `appointments` no próprio componente.
-- **Formatação:** `registerLocaleData` registra `pt` (o `en-US` já vem no Angular). Os pipes `localeDate` e `localeCurrency` usam o locale ativo — a moeda continua BRL, só a formatação muda. O FullCalendar recebe `pt-br`/`en`.
+- **Troca de idioma:** o seletor de bandeiras no cabeçalho (Brasil = pt-BR, EUA = en; SVG inline em `FlagComponent`, decorativo, em vez de emoji, que o Windows mostra como letras) é um grupo rotulado "Idioma"/"Language" com um botão por idioma, nome acessível, `title` e `lang` no próprio idioma, `aria-pressed` e anel de destaque no ativo. Ele chama `LanguageService.use()`, que ativa o idioma no Transloco, atualiza `<html lang>`, o locale de formatação e o título da aba, e salva a escolha.
+- **Arquivos:** `public/i18n/{pt-BR,en}.json` guardam só o que é global (shell, navegação, ações comuns, mensagens de validação). Cada feature tem um **escopo lazy** em `public/i18n/<feature>/{pt-BR,en}.json` (`dashboard`, `calendar`, `clients`, `professionals`, `services`, `appointments`), registrado com `provideTranslocoScope()` nos `providers` da rota da feature, o JSON é baixado junto com o chunk da feature. O diálogo de agendamento, aberto de várias telas, registra o escopo `appointments` no próprio componente.
+- **Formatação:** `registerLocaleData` registra `pt` (o `en-US` já vem no Angular). Os pipes `localeDate` e `localeCurrency` usam o locale ativo, a moeda continua BRL, só a formatação muda. O FullCalendar recebe `pt-br`/`en`.
 - **Fora do escopo da tradução:** os dados cadastrados (nomes de serviços, especialidades, observações) são conteúdo do usuário e aparecem como foram digitados, inclusive os dados de demonstração.
 
 ### Como adicionar um idioma
@@ -158,6 +159,6 @@ Publicado na Cloudflare (Workers static assets) em https://portfolio.brunoisaac.
 
 ## Autor
 
-**Bruno Vinicius Isaac Costa** — https://github.com/BrunoICosta
+**Bruno Vinicius Isaac Costa** · https://github.com/BrunoICosta
 
 Licença [MIT](LICENSE).

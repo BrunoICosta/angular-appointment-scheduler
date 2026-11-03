@@ -17,7 +17,7 @@
         <option value="" disabled>{{ 'appointments.selectProfessional' | transloco }}</option>
         @for (professional of professionals(); track professional.id) {
           <option [value]="professional.id">
-            {{ professional.name }} — {{ professional.specialty }}
+            {{ professional.name }}, {{ professional.specialty }}
           </option>
         }
       </select>
