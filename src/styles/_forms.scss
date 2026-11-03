@@ -62,6 +62,11 @@
     color: var(--text-subtle);
   }
 
+  // iOS Safari zooms into focused fields smaller than 16px (and stays zoomed).
+  @media (max-width: 767px), (pointer: coarse) {
+    font-size: max(16px, 1rem);
+  }
+
   &:hover {
     border-color: var(--text-subtle);
   }

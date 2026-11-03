@@ -27,7 +27,7 @@
   <div class="card calendar-card">
     <p class="calendar-hint">
       <app-icon name="info" />
-      {{ 'calendar.hint' | transloco }}
+      {{ (touch() ? 'calendar.hintTouch' : 'calendar.hint') | transloco }}
     </p>
     @defer (on immediate) {
       <app-scheduler-calendar

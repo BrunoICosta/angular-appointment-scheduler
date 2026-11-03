@@ -4,6 +4,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
 import { NewEntity, Service } from '../../../../core/models';
 import { FieldErrorComponent } from '../../../../shared/forms/field-error/field-error.component';
+import { MoneyInputDirective } from '../../../../shared/forms/masks/money-input.directive';
 import { ModalComponent } from '../../../../shared/ui/modal/modal.component';
 
 /** Durations offered in the select, in minutes (15 min steps up to 4h). */
@@ -14,7 +15,13 @@ export const DURATION_OPTIONS: readonly number[] = Array.from(
 
 @Component({
   selector: 'app-service-form-dialog',
-  imports: [ReactiveFormsModule, TranslocoPipe, ModalComponent, FieldErrorComponent],
+  imports: [
+    ReactiveFormsModule,
+    TranslocoPipe,
+    ModalComponent,
+    FieldErrorComponent,
+    MoneyInputDirective,
+  ],
   templateUrl: './service-form-dialog.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -28,7 +35,8 @@ export class ServiceFormDialogComponent implements OnInit {
   protected readonly form = inject(NonNullableFormBuilder).group({
     name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(60)]],
     durationMinutes: [60, [Validators.required, Validators.min(15), Validators.max(240)]],
-    price: [0, [Validators.required, Validators.min(0), Validators.max(100_000)]],
+    // `number | null`: the money input reports `null` when the field is cleared.
+    price: [0 as number | null, [Validators.required, Validators.min(0), Validators.max(100_000)]],
   });
 
   ngOnInit(): void {
@@ -51,7 +59,7 @@ export class ServiceFormDialogComponent implements OnInit {
     this.save.emit({
       name: value.name.trim(),
       durationMinutes: Number(value.durationMinutes),
-      price: Math.round(Number(value.price) * 100) / 100,
+      price: Math.round((value.price ?? 0) * 100) / 100,
     });
   }
 }

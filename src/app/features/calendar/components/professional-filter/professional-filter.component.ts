@@ -34,6 +34,11 @@ import { Professional } from '../../../../core/models';
     </div>
   `,
   styles: `
+    :host {
+      display: block;
+      min-width: 0;
+    }
+
     .chips {
       display: flex;
       gap: 8px;

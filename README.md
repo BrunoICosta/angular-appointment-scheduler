@@ -21,6 +21,7 @@ Aplicação de agendamentos para clínicas e salões feita em **Angular 20** com
   - Clique ou arraste sobre um horário livre para abrir o formulário já preenchido.
   - Arraste um agendamento para reagendar e puxe a borda para alterar a duração. Se a mudança quebrar alguma regra, o evento volta para o lugar e uma mensagem explica o motivo.
   - Agendamentos concluídos/cancelados ficam visíveis como histórico, mas bloqueados.
+  - No celular a agenda abre no dia, troca para a lista da semana ou o mês pela barra abaixo do calendário, acompanha a mudança de tamanho da tela e rola junto com a página (sem rolagem interna). Toque e segure para arrastar.
 - **Formulário de agendamento** com validação em tempo real:
   - sem sobreposição com outros agendamentos do profissional (**validador assíncrono**, com debounce e estado "verificando disponibilidade…");
   - dentro do horário de atendimento do profissional naquele dia da semana;
@@ -29,7 +30,7 @@ Aplicação de agendamentos para clínicas e salões feita em **Angular 20** com
   - ao escolher o serviço, o término é calculado pela duração; mudar o início preserva a duração.
 - **Clientes**: CRUD com busca (nome, e-mail, telefone ou CPF), **validador de CPF** (dígitos verificadores), CPF único, **máscara e validador de telefone** brasileiro (fixo e celular).
 - **Profissionais**: CRUD com especialidade, cor na agenda e editor de horário semanal (validação por dia e "pelo menos um dia de atendimento").
-- **Serviços**: catálogo com duração e preço; serviços em uso não podem ser excluídos.
+- **Serviços**: catálogo com duração e preço (campo com máscara de moeda que segue o idioma: `R$ 1.234,56` / `R$1,234.56`, digitação a partir dos centavos e colagem de valores); serviços em uso não podem ser excluídos.
 - **Início**: próximos atendimentos agrupados por dia, totais do dia e da semana, receita prevista e a equipe do dia.
 - **i18n**: alternância pt-BR/en sem recarregar a página, textos, rótulos acessíveis, mensagens de validação, toasts, título da aba, `<html lang>`, calendário, datas e moeda (`R$ 120,00` × `R$120.00`). Detalhes em [Internacionalização](#internacionalização).
 - Tema claro/escuro (respeita o sistema), layout responsivo (barra lateral no desktop, barra inferior no celular), estados vazios, toasts e diálogos acessíveis (`<dialog>` nativo, foco gerenciado, `aria-live`).
@@ -139,9 +140,9 @@ Publicado na Cloudflare (Workers static assets) em https://portfolio.brunoisaac.
 
 ## Testes
 
-116 testes unitários (Karma/Jasmine) cobrindo:
+132 testes unitários (Karma/Jasmine) cobrindo:
 
-- validadores de CPF, telefone e CPF único, máscaras e utilitários de data;
+- validadores de CPF, telefone e CPF único, máscaras (incluindo a de moeda: formatação por idioma, digitação a partir dos centavos e colagem) e utilitários de data;
 - regras de agenda (sobreposição, expediente, passado, ordem de prioridade);
 - validadores do formulário: cross-field, "não no passado", expediente e o **assíncrono** de sobreposição (com `fakeAsync`, incluindo a transição `PENDING → INVALID`);
 - validadores de horário dos profissionais, `EntityStore` (seed, persistência, JSON corrompido, storage indisponível), `LanguageService` e seletores do dashboard;

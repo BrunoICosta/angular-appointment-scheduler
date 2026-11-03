@@ -5,5 +5,6 @@
   "filterLabel": "Filtrar por profissional",
   "allProfessionals": "Todos",
   "hint": "Clique em um horário livre para agendar, arraste para reagendar e puxe a borda para mudar a duração.",
-  "rescheduled": "Agendamento de {{name}} reagendado."
+  "rescheduled": "Agendamento de {{name}} reagendado.",
+  "hintTouch": "Toque em um horário livre para agendar. Toque e segure um agendamento para arrastá-lo ou mudar a duração."
 }

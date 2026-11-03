@@ -1,5 +1,15 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
-import { FullCalendarModule } from '@fullcalendar/angular';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  untracked,
+  viewChild,
+} from '@angular/core';
+import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
 import {
   BusinessHoursInput,
   CalendarOptions,
@@ -12,12 +22,18 @@ import {
 import ptBrLocale from '@fullcalendar/core/locales/pt-br';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { EventResizeDoneArg } from '@fullcalendar/interaction';
+import listPlugin from '@fullcalendar/list';
 import timeGridPlugin from '@fullcalendar/timegrid';
 
 import { AppLanguage } from '../../../../core/i18n/languages';
 import { CLOCK } from '../../../../core/utils/clock.token';
 import { mediaQuerySignal } from '../../../../shared/utils/media-query.utils';
 import { AppointmentMove, SlotSelection } from './scheduler-calendar.models';
+
+/** Phones get a single-day grid by default; larger screens get the week. */
+const COMPACT_QUERY = '(max-width: 767px)';
+const COMPACT_VIEW = 'timeGridDay';
+const WIDE_VIEW = 'timeGridWeek';
 
 /**
  * Thin wrapper around FullCalendar. It owns every FullCalendar-specific option so the page
@@ -28,6 +44,9 @@ import { AppointmentMove, SlotSelection } from './scheduler-calendar.models';
   selector: 'app-scheduler-calendar',
   imports: [FullCalendarModule],
   template: `<full-calendar [options]="options()" [events]="events()" />`,
+  // Grid/flex children default to `min-width: auto`; without this a wide toolbar could
+  // stretch the page horizontally on phones.
+  host: { style: 'display: block; min-width: 0' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SchedulerCalendarComponent {
@@ -39,25 +58,47 @@ export class SchedulerCalendarComponent {
   readonly slotSelected = output<SlotSelection>();
   readonly appointmentMoved = output<AppointmentMove>();
 
-  private readonly compact = mediaQuerySignal('(max-width: 767px)');
+  private readonly compact = mediaQuerySignal(COMPACT_QUERY);
   private readonly clock = inject(CLOCK);
+  private readonly calendar = viewChild(FullCalendarComponent);
+
+  constructor() {
+    // `initialView` only applies once, so follow breakpoint changes (rotation, resizing).
+    let previous: boolean | undefined;
+    effect(() => {
+      const compact = this.compact();
+      const calendar = this.calendar();
+      if (!calendar) {
+        return;
+      }
+      if (previous !== undefined && previous !== compact) {
+        untracked(() => calendar.getApi().changeView(compact ? COMPACT_VIEW : WIDE_VIEW));
+      }
+      previous = compact;
+    });
+  }
 
   protected readonly options = computed<CalendarOptions>(() => {
     const compact = this.compact();
     return {
-      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+      plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
       locales: [ptBrLocale],
       locale: this.language() === 'pt-BR' ? 'pt-br' : 'en',
-      initialView: compact ? 'timeGridDay' : 'timeGridWeek',
+      initialView: compact ? COMPACT_VIEW : WIDE_VIEW,
+      // Phones: navigation on top, the view switcher in a second row below the grid,
+      // and the agenda list instead of the cramped week grid.
       headerToolbar: compact
         ? { left: 'prev,next', center: 'title', right: 'today' }
         : {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
           },
-      footerToolbar: compact ? { center: 'dayGridMonth,timeGridWeek,timeGridDay' } : undefined,
+      footerToolbar: compact ? { center: 'timeGridDay,listWeek,dayGridMonth' } : undefined,
+      // Let the page scroll: no inner scroller competing with it on touch screens.
       height: 'auto',
+      // Our top bar is already sticky, a sticky day header would slide under it.
+      stickyHeaderDates: false,
       firstDay: 1,
       allDaySlot: false,
       nowIndicator: true,
@@ -67,7 +108,7 @@ export class SchedulerCalendarComponent {
       snapDuration: '00:15:00',
       scrollTime: '08:00:00',
       expandRows: true,
-      dayMaxEvents: 3,
+      dayMaxEvents: compact ? 2 : 3,
       businessHours: this.businessHours(),
       eventTimeFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
       slotLabelFormat: { hour: '2-digit', minute: '2-digit', hour12: false },
@@ -75,7 +116,10 @@ export class SchedulerCalendarComponent {
       selectMirror: true,
       editable: true,
       eventDurationEditable: true,
+      // Touch: a short press scrolls the page, a long press picks up an event or a slot.
       longPressDelay: 350,
+      eventLongPressDelay: 350,
+      selectLongPressDelay: 350,
       // Past slots can never be booked, so do not even offer the selection.
       // In the month view a whole day is selected: today stays selectable.
       selectAllow: (span: DateSpanApi) =>

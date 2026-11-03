@@ -12,7 +12,8 @@ A booking app for clinics and salons built with **Angular 20** and **FullCalenda
 
 - **Calendar:** month/week/day views, filter by professional (kept in the URL), shaded non-working hours, click a free slot to book, drag to reschedule, resize to change the duration. Invalid moves are reverted with an explanation.
 - **Appointment form:** live async availability check (debounced, with a "checking availability…" state), working-hours and not-in-the-past checks, end-after-start cross-field rule, end time computed from the service duration.
-- **Clients, professionals and services** CRUD pages with Brazilian CPF and phone validators, input masks and a weekly working-hours editor.
+- **Clients, professionals and services** CRUD pages with Brazilian CPF and phone validators, input masks, a locale-aware BRL money field and a weekly working-hours editor.
+- **Mobile calendar:** day view by default, week list or month from a toolbar below the grid, follows breakpoint changes, scrolls with the page; touch and hold to drag.
 - **Dashboard** with upcoming appointments grouped by day, daily/weekly totals and expected revenue.
 - Light/dark theme, responsive layout, accessible dialogs, toasts and empty states.
 
@@ -40,7 +41,7 @@ Angular 20.3 (standalone, Signals, control flow, `@defer`), TypeScript 5.9, Full
 ```bash
 npm install
 npm start            # http://localhost:4200
-npm run test:ci      # 116 unit tests in headless Chrome
+npm run test:ci      # 132 unit tests in headless Chrome
 npm run lint
 npm run build
 ```

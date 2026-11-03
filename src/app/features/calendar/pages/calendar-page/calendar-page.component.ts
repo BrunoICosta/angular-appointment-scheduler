@@ -13,6 +13,7 @@ import { CLOCK } from '../../../../core/utils/clock.token';
 import { IconComponent } from '../../../../shared/ui/icon/icon.component';
 import { ToastService } from '../../../../shared/ui/toast/toast.service';
 import { addMinutes, timeToMinutes } from '../../../../shared/utils/date-time.utils';
+import { mediaQuerySignal } from '../../../../shared/utils/media-query.utils';
 import { ProfessionalFilterComponent } from '../../components/professional-filter/professional-filter.component';
 import { SchedulerCalendarComponent } from '../../components/scheduler-calendar/scheduler-calendar.component';
 import {
@@ -46,6 +47,8 @@ export class CalendarPageComponent {
   readonly professional = input<string | undefined>();
 
   protected readonly professionals = this.professionalsStore.sorted;
+  /** Touch screens get instructions for tap and long-press instead of click and drag. */
+  protected readonly touch = mediaQuerySignal('(pointer: coarse)');
 
   /** The selected professional, ignoring stale ids in the URL. */
   protected readonly selected = computed(() => this.professionalsStore.get(this.professional()));

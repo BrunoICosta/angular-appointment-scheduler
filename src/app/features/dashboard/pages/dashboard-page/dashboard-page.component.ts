@@ -127,9 +127,9 @@ export class DashboardPageComponent {
     return {
       appointment,
       start: appointment.start,
-      clientName: this.clients.get(appointment.clientId)?.name ?? '—',
-      serviceName: service?.name ?? '—',
-      professionalName: professional?.name ?? '—',
+      clientName: this.clients.get(appointment.clientId)?.name ?? '-',
+      serviceName: service?.name ?? '-',
+      professionalName: professional?.name ?? '-',
       color: professional?.color ?? 'var(--text-subtle)',
       price: service?.price ?? 0,
     };

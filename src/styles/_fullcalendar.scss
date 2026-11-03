@@ -168,9 +168,84 @@
     overflow: hidden;
   }
 
+  // ---- List view ("Agenda" on phones) -------------------------------------
+  --fc-list-event-hover-bg-color: var(--surface-2);
+
+  .fc-list {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+
+  .fc-list-day-cushion {
+    background: var(--surface-2);
+    color: var(--text);
+  }
+
+  .fc-list-day-text,
+  .fc-list-day-side-text {
+    display: inline-block;
+    color: var(--text);
+    text-decoration: none;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  .fc-list-event td {
+    border-color: var(--border);
+  }
+
+  .fc-list-event-time {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .fc-list-empty {
+    background: var(--surface);
+    color: var(--text-muted);
+  }
+
+  .fc-list-event.fc-event--cancelled .fc-list-event-title {
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
   @media (max-width: 767px) {
+    .fc-toolbar.fc-header-toolbar {
+      flex-wrap: nowrap;
+      margin-bottom: 12px;
+    }
+
+    .fc-toolbar-chunk {
+      min-width: 0;
+    }
+
+    .fc-toolbar-chunk:nth-child(2) {
+      flex: 1;
+      text-align: center;
+    }
+
+    .fc-toolbar.fc-footer-toolbar {
+      justify-content: center;
+      margin-top: 12px;
+    }
+
+    .fc-footer-toolbar .fc-button {
+      min-height: 40px;
+      padding-inline: 1em;
+    }
+
+    .fc-header-toolbar .fc-button {
+      min-width: 40px;
+      min-height: 40px;
+    }
+
     .fc-toolbar-title {
       font-size: 1rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .fc-button {
